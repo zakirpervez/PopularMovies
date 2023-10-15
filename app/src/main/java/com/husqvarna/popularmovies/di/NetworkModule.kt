@@ -1,6 +1,8 @@
 package com.husqvarna.popularmovies.di
 
 import android.content.Context
+import com.husqvarna.popularmovies.BuildConfig
+import com.husqvarna.popularmovies.api.ApiRequestInterceptor
 import com.husqvarna.popularmovies.api.ApiService
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
@@ -24,15 +26,16 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, appContext: Context): OkHttpClient =
+    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, appContext: Context, apiRequestInterceptor: ApiRequestInterceptor): OkHttpClient =
         OkHttpClient.Builder()
+            .addInterceptor(apiRequestInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(ChuckInterceptor(appContext))
             .build()
 
     @Provides
     fun provideRetrofitInstance(okHttpClient: OkHttpClient) : Retrofit = Retrofit.Builder()
-        .baseUrl("https://api.themoviedb.org/3/")
+        .baseUrl(BuildConfig.BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
