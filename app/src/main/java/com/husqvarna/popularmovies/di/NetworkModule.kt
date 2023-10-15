@@ -4,7 +4,6 @@ import android.content.Context
 import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.api.ApiRequestInterceptor
 import com.husqvarna.popularmovies.api.ApiService
-import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,7 +29,6 @@ class NetworkModule {
         OkHttpClient.Builder()
             .addInterceptor(apiRequestInterceptor)
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(ChuckInterceptor(appContext))
             .build()
 
     @Provides

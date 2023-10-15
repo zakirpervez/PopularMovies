@@ -88,10 +88,6 @@ dependencies {
     implementation("com.jakewharton.timber:timber:5.0.1")
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
-    // Dev
-    debugImplementation("com.readystatesoftware.chuck:library:1.1.0")
-    releaseImplementation("com.readystatesoftware.chuck:library-no-op:1.1.0")
-
     // Unit Tests
     testImplementation("junit:junit:4.13.2")
 

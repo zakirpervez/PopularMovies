@@ -5,56 +5,75 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.husqvarna.popularmovies.R
+import com.husqvarna.popularmovies.api.response.ResultsItem
+import com.husqvarna.popularmovies.databinding.FragmentMoviesBinding
+import com.husqvarna.popularmovies.ui.fragments.home.adapter.MoviesAdapter
+import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MoviesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class MoviesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _moviesBinding: FragmentMoviesBinding? = null
+    private val moviesBinding by lazy { _moviesBinding!! }
+    private lateinit var moviesAdapter: MoviesAdapter
+
+    private val moviesViewModel: MoviesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movies, container, false)
+        _moviesBinding = FragmentMoviesBinding.inflate(inflater, container, false)
+        moviesBinding.viewModel = moviesViewModel
+        return moviesBinding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MoviesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MoviesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observeData()
+        moviesViewModel.fetchMovies(1)
+        setupViews()
+    }
+
+    private fun observeData() {
+        moviesViewModel.moviesLiveData.observe(viewLifecycleOwner) {
+            it?.apply {
+                moviesAdapter.updateMovies(this)
             }
+        }
+
+        moviesViewModel.errorLiveData.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun setupViews() {
+        with(moviesBinding.smsRecyclerView) {
+            moviesAdapter = MoviesAdapter()
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
+            itemAnimator = null
+            adapter = moviesAdapter
+            moviesAdapter.setOnMovieItemClickListener(object :
+                MoviesAdapter.OnMovieItemClickListener {
+                override fun onMovieClick(movie: ResultsItem) {
+                    findNavController().navigate(R.id.action_moviesFragment_to_movieDetailFragment)
+                }
+            })
+        }
+    }
+
+    override fun onDestroy() {
+        _moviesBinding = null
+        super.onDestroy()
     }
 }

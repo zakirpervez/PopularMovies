@@ -53,4 +53,8 @@ Note: As I am single developer, I am not creating any feature branches. I am dir
 
 Note: As I don't have any JIRA/Github/Gitlab ticket/issue number, I am adding simple ticket no.
 
+<h3>App Screens</h3>
+1. Splash Screen: Stay for 3 seconds and then navigate to Home Screen.
+
+
 

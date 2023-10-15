@@ -8,9 +8,9 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("/popular")
+    @GET("popular")
     suspend fun fetchPopularMovies(@Query("page") page: Int): Response<PopularMoviesResponse>
 
-    @GET("/{movie_id}")
+    @GET("{movie_id}")
     suspend fun fetchMovieDetails(@Path("movie_id") movieId: Int): Response<MovieDetailsResponse>
 }
