@@ -24,12 +24,28 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+
+            buildConfigField("String", "API_KEY", project.properties["API_KEY"].toString())
+            buildConfigField("String", "ACCESS_TOKEN", project.properties["ACCESS_TOKEN"].toString())
+            buildConfigField("String", "BASE_URL", project.properties["BASE_URL"].toString())
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField("String", "API_KEY", project.properties["API_KEY"].toString())
+            buildConfigField("String", "ACCESS_TOKEN", project.properties["ACCESS_TOKEN"].toString())
+            buildConfigField("String", "BASE_URL", project.properties["BASE_URL"].toString())
         }
     }
     compileOptions {
@@ -41,6 +57,7 @@ android {
     }
     buildFeatures {
         dataBinding = true
+        buildConfig = true
     }
     packaging {
         resources {
@@ -69,6 +86,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
     implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     // Dev
     debugImplementation("com.readystatesoftware.chuck:library:1.1.0")

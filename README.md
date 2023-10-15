@@ -29,9 +29,9 @@ Note: As I am single developer, I am not creating any feature branches. I am dir
 
 <h3>Commit guidelines</h3>
 <p>Commit should always be make in following format</p>
-type(scope): <commit_description>-[ticket/issue_number].
+<p>type(scope): <commit_description>-[ticket/issue_number].</p>
 
-type: Type should be represent the nature of commit. It can be one of the following.
+<p>type: Type should be represent the nature of commit. It can be one of the following.</p>
 1. feat: A new code which is return for the feature.
 2. fix: A bug fix.
 3. refactor: A modification inside the existing code.
@@ -40,15 +40,16 @@ type: Type should be represent the nature of commit. It can be one of the follow
 6. test: Adding or updating tests.
 7. chore: Updating build tasks, package manager configs, etc; no production code change.
 
-scope: Scope indicates the module, component, or part of the project the commit affects. It can be one of the following.
-1. Feature Component
+<p>scope: Scope indicates the module, component, or part of the project the commit affects. It can be one of the following.</p>
+1. Component
 2. BugFix 
 3. Module
 4. App
+5. Api
 
-commit_description: A short, concise summary of the changes.
+<p>commit_description: A short, concise summary of the changes.</p>
 
-ticket/issue_number: Represent JIRA/Github/Gitlab ticket/issue number.
+<p>ticket/issue_number: Represent JIRA/Github/Gitlab ticket/issue number.</p>
 
 Note: As I don't have any JIRA/Github/Gitlab ticket/issue number, I am adding simple ticket no.
 
