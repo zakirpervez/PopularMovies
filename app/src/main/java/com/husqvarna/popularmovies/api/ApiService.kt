@@ -1,7 +1,7 @@
 package com.husqvarna.popularmovies.api
 
-import com.husqvarna.popularmovies.api.response.MovieDetailsResponse
-import com.husqvarna.popularmovies.api.response.PopularMoviesResponse
+import com.husqvarna.popularmovies.api.models.response.MovieDetailsResponse
+import com.husqvarna.popularmovies.api.models.response.PopularMoviesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

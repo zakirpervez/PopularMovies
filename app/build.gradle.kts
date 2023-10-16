@@ -34,6 +34,7 @@ android {
             buildConfigField("String", "API_KEY", project.properties["API_KEY"].toString())
             buildConfigField("String", "ACCESS_TOKEN", project.properties["ACCESS_TOKEN"].toString())
             buildConfigField("String", "BASE_URL", project.properties["BASE_URL"].toString())
+            buildConfigField("String", "IMAGES_URL", project.properties["IMAGES_URL"].toString())
         }
 
         release {
@@ -46,6 +47,7 @@ android {
             buildConfigField("String", "API_KEY", project.properties["API_KEY"].toString())
             buildConfigField("String", "ACCESS_TOKEN", project.properties["ACCESS_TOKEN"].toString())
             buildConfigField("String", "BASE_URL", project.properties["BASE_URL"].toString())
+            buildConfigField("String", "IMAGES_URL", project.properties["IMAGES_URL"].toString())
         }
     }
     compileOptions {

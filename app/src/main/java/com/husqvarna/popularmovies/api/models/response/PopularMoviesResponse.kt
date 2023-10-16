@@ -1,19 +1,20 @@
-package com.husqvarna.popularmovies.api.response
+package com.husqvarna.popularmovies.api.models.response
 
 import com.google.gson.annotations.SerializedName
+import java.util.Locale
 
 data class PopularMoviesResponse(
 
-	@field:SerializedName("page")
+    @field:SerializedName("page")
 	val page: Int? = null,
 
-	@field:SerializedName("total_pages")
+    @field:SerializedName("total_pages")
 	val totalPages: Int? = null,
 
-	@field:SerializedName("results")
+    @field:SerializedName("results")
 	val results: List<ResultsItem?>? = null,
 
-	@field:SerializedName("total_results")
+    @field:SerializedName("total_results")
 	val totalResults: Int? = null
 )
 
@@ -59,5 +60,5 @@ data class ResultsItem(
 	val adult: Boolean? = null,
 
 	@field:SerializedName("vote_count")
-	val voteCount: Int? = null
+	val voteCount: Int? = null,
 )

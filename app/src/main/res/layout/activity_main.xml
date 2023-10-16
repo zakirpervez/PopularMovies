@@ -18,6 +18,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/app_navigation_graph"
+            android:background="@color/purple_200"
 
             android:layout_width="@dimen/dimen_0"
             android:layout_height="@dimen/dimen_0" />

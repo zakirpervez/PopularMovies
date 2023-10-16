@@ -1,4 +1,4 @@
-package com.husqvarna.popularmovies.api
+package com.husqvarna.popularmovies.api.interceptor
 
 import com.husqvarna.popularmovies.BuildConfig
 import okhttp3.Interceptor

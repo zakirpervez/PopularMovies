@@ -2,7 +2,7 @@ package com.husqvarna.popularmovies.di
 
 import android.content.Context
 import com.husqvarna.popularmovies.BuildConfig
-import com.husqvarna.popularmovies.api.ApiRequestInterceptor
+import com.husqvarna.popularmovies.api.interceptor.ApiRequestInterceptor
 import com.husqvarna.popularmovies.api.ApiService
 import dagger.Module
 import dagger.Provides

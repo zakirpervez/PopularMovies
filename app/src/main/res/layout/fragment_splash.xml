@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragments.splash.SplashFragment"
-        android:background="@color/white">
+        android:background="@color/purple_200">
 
          <com.google.android.material.imageview.ShapeableImageView
              android:id="@+id/logo_image"
@@ -21,7 +21,7 @@
              app:layout_constraintTop_toTopOf="parent"
              app:layout_constraintBottom_toBottomOf="parent"
 
-             app:srcCompat="@drawable/husqvarna_logo_vector"
+             app:srcCompat="@drawable/husqvarna_logo_vector_white"
 
              />
 

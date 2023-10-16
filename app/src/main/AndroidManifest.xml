@@ -13,15 +13,13 @@
         android:name=".PopularMoviesApp"
         android:roundIcon="@drawable/husqvarna_logo_vector"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PopularMovies"
+        android:theme="@style/Theme.App_Light"
         tools:targetApi="31">
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.PopularMovies">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

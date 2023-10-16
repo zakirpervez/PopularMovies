@@ -8,23 +8,28 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.husqvarna.popularmovies.R
-import com.husqvarna.popularmovies.api.response.ResultsItem
+import com.husqvarna.popularmovies.api.models.response.ResultsItem
 import com.husqvarna.popularmovies.databinding.FragmentMoviesBinding
 import com.husqvarna.popularmovies.ui.fragments.home.adapter.MoviesAdapter
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MoviesFragment : Fragment() {
 
     private var _moviesBinding: FragmentMoviesBinding? = null
     private val moviesBinding by lazy { _moviesBinding!! }
-    private lateinit var moviesAdapter: MoviesAdapter
 
+    @Inject lateinit var moviesAdapter: MoviesAdapter
     private val moviesViewModel: MoviesViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        moviesViewModel.fetchMovies(1)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,15 +44,12 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
-        moviesViewModel.fetchMovies(1)
         setupViews()
     }
 
     private fun observeData() {
         moviesViewModel.moviesLiveData.observe(viewLifecycleOwner) {
-            it?.apply {
-                moviesAdapter.updateMovies(this)
-            }
+            it?.apply { moviesAdapter.updateMovies(this) }
         }
 
         moviesViewModel.errorLiveData.observe(viewLifecycleOwner) {
@@ -56,19 +58,17 @@ class MoviesFragment : Fragment() {
     }
 
     private fun setupViews() {
+        moviesAdapter.setOnMovieItemClickListener(object :
+            MoviesAdapter.OnMovieItemClickListener {
+            override fun onMovieClick(movie: ResultsItem) {
+                findNavController().navigate(R.id.action_moviesFragment_to_movieDetailFragment)
+            }
+        })
+
         with(moviesBinding.smsRecyclerView) {
-            moviesAdapter = MoviesAdapter()
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
             itemAnimator = null
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = moviesAdapter
-            moviesAdapter.setOnMovieItemClickListener(object :
-                MoviesAdapter.OnMovieItemClickListener {
-                override fun onMovieClick(movie: ResultsItem) {
-                    findNavController().navigate(R.id.action_moviesFragment_to_movieDetailFragment)
-                }
-            })
         }
     }
 
