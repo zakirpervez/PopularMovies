@@ -5,56 +5,110 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.R
+import com.husqvarna.popularmovies.databinding.FragmentMovieDetailBinding
+import com.husqvarna.popularmovies.ui.fragments.detail.adapter.GeneresAdapter
+import com.husqvarna.popularmovies.ui.fragments.detail.adapter.ProductionCompaniesAdapter
+import com.husqvarna.popularmovies.ui.viewmodel.MovieDetailsViewModel
+import com.husqvarna.popularmovies.util.loadImage
+import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
+import javax.inject.Inject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MovieDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var _binding: FragmentMovieDetailBinding? = null
+    private val binding get() = _binding!!
+    private val movieDetailsViewModel: MovieDetailsViewModel by viewModels()
+    @Inject lateinit var generesAdapter: GeneresAdapter
+    @Inject lateinit var productionCompaniesAdapter: ProductionCompaniesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        arguments?.getInt("movieId")?.let { movieId ->
+            movieDetailsViewModel.fetchMovieDetails(movieId)
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_detail, container, false)
+        _binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = movieDetailsViewModel
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MovieDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MovieDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        observeData()
+        setupViews()
+    }
+
+    private fun setupViews() {
+        with(binding.genereRecyclerView) {
+            itemAnimator = null
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            adapter = generesAdapter
+        }
+
+        with(binding.productionHousesRecyclerView) {
+            itemAnimator = null
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                false
+            )
+            adapter = productionCompaniesAdapter
+        }
+    }
+
+    private fun observeData() {
+        movieDetailsViewModel.moviesDetailsLiveData.observe(viewLifecycleOwner) {
+            movieDetailsViewModel.isLoading.set(false)
+            movieDetailsViewModel.movieTitleMutableLiveData.value = it?.title
+            movieDetailsViewModel.movieTagLineMutableLiveData.value = it?.tagline
+            movieDetailsViewModel.releaseDateMutableLiveData.value = it?.releaseDate
+            movieDetailsViewModel.overviewMutableLiveData.value = it?.overview
+            movieDetailsViewModel.budgetMutableLiveData.value = it?.budget.toString()
+            movieDetailsViewModel.imdbRatingMutableLiveData.value =
+                "${getString(R.string.imdb_rating)}\n${it?.imdbId}"
+            movieDetailsViewModel.popularityMutableLiveData.value =
+                "${getString(R.string.popularity)}\n${it?.popularity}"
+            it?.originalLanguage?.let { language ->
+                movieDetailsViewModel.languageMutableLiveData.value =
+                    Locale(language).displayLanguage
             }
+            it?.backdropPath?.let { path ->
+                val posterUrl = "${BuildConfig.IMAGES_URL}${path}"
+                binding.moviePosterImage.loadImage(posterUrl)
+            }
+            generesAdapter.updateGeneres(it?.genres ?: emptyList())
+            productionCompaniesAdapter.updateProductionCompanies(it?.productionCompanies ?: emptyList())
+        }
+
+        movieDetailsViewModel.errorLiveData.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }

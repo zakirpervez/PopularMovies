@@ -1,15 +1,278 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.detail.MovieDetailFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.husqvarna.popularmovies.ui.viewmodel.MovieDetailsViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="movie details" />
+        android:background="@color/dull_purple">
 
-</FrameLayout>
+        <androidx.constraintlayout.motion.widget.MotionLayout xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutDescription="@xml/fragment_movie_detail_scene"
+            tools:context=".ui.fragments.detail.MovieDetailFragment">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/movie_poster_image"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="@dimen/dimen_0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,10:5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.02"
+                app:layout_constraintWidth_percent="0.98"
+                tools:src="@drawable/husqvarna_logo_vector" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/movie_title_text"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.movieTitleMutableLiveData}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_text_24"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/movie_poster_image"
+                app:layout_constraintVertical_bias="0.025"
+                app:layout_constraintWidth_percent="0.9"
+
+                tools:text="Avenger End Games" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/movie_tagline_text"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="@{viewModel.movieTagLineMutableLiveData}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_text_16"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/movie_title_text"
+                app:layout_constraintWidth_percent="0.9"
+
+                tools:text="Avenger End Games" />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/released_image"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="@dimen/dimen_0"
+                android:layout_marginTop="@dimen/dimen_8"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintStart_toStartOf="@+id/movie_tagline_text"
+                app:layout_constraintTop_toBottomOf="@id/movie_tagline_text"
+
+                app:layout_constraintWidth_percent="0.08"
+                app:srcCompat="@drawable/baseline_calendar_month_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/released_date_text"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:fontFamily="sans-serif"
+                android:text="@{viewModel.releaseDateMutableLiveData}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_text_16"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/released_image"
+                app:layout_constraintEnd_toEndOf="@id/movie_title_text"
+                app:layout_constraintStart_toEndOf="@+id/released_image"
+                app:layout_constraintTop_toTopOf="@id/released_image"
+                tools:text="16/10/2023" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/language_image"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="@dimen/dimen_0"
+                android:layout_marginTop="@dimen/dimen_8"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintStart_toStartOf="@+id/movie_title_text"
+                app:layout_constraintTop_toBottomOf="@id/released_image"
+
+                app:layout_constraintWidth_percent="0.08"
+                app:srcCompat="@drawable/baseline_language_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/language_text"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:fontFamily="sans-serif"
+                android:text="@{viewModel.languageMutableLiveData}"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_text_16"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/language_image"
+                app:layout_constraintEnd_toEndOf="@id/movie_title_text"
+                app:layout_constraintStart_toEndOf="@+id/language_image"
+                app:layout_constraintTop_toTopOf="@id/language_image"
+                tools:text="English" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/budget_image"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="@dimen/dimen_0"
+                android:layout_marginTop="@dimen/dimen_8"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintStart_toStartOf="@+id/movie_title_text"
+                app:layout_constraintTop_toBottomOf="@id/language_image"
+
+                app:layout_constraintWidth_percent="0.08"
+                app:srcCompat="@drawable/baseline_monetization_on_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/budget_text"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:fontFamily="sans-serif"
+                android:text="@{viewModel.budgetMutableLiveData}"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_text_16"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/budget_image"
+                app:layout_constraintEnd_toEndOf="@id/movie_title_text"
+                app:layout_constraintStart_toEndOf="@+id/budget_image"
+                app:layout_constraintTop_toTopOf="@id/budget_image"
+                tools:text="English" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/overview_text"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:fontFamily="sans-serif"
+                android:text="@{viewModel.overviewMutableLiveData}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_text_16"
+                app:layout_constraintEnd_toEndOf="@+id/movie_title_text"
+                app:layout_constraintStart_toStartOf="@+id/movie_title_text"
+                app:layout_constraintTop_toBottomOf="@id/budget_image"
+                tools:text="A life of an ordinary Parisian teenager Marinette goes
+                 superhuman when she becomes Ladybug.
+                 Bestowed with magical powers of creation,
+                 Ladybug must unite with her opposite, Cat Noir,
+                 to save Paris as a new villain unleashes chaos unto the city." />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/imdb_rating_text"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="@dimen/dimen_0"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:background="@color/yellow"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="@{viewModel.imdbRatingMutableLiveData}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_text_16"
+                android:textStyle="bold"
+                app:layout_constraintDimensionRatio="H, 10:3.5"
+
+                app:layout_constraintStart_toStartOf="@+id/movie_title_text"
+                app:layout_constraintTop_toBottomOf="@id/overview_text"
+                app:layout_constraintWidth_percent="0.44"
+                tools:text="IMDB" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/popularity_text"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="@dimen/dimen_0"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:background="@color/yellow"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="@{viewModel.popularityMutableLiveData}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_text_16"
+                android:textStyle="bold"
+                app:layout_constraintDimensionRatio="H, 10:3.5"
+
+                app:layout_constraintEnd_toEndOf="@+id/movie_title_text"
+                app:layout_constraintTop_toBottomOf="@id/overview_text"
+                app:layout_constraintWidth_percent="0.44"
+                tools:text="IMDB" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/genere_label_text"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:text="@string/generes"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_text_24"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imdb_rating_text"
+                app:layout_constraintVertical_bias="0.025"
+                app:layout_constraintWidth_percent="0.9"
+
+                tools:text="Avenger End Games" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/genere_recycler_view"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/movie_title_text"
+                app:layout_constraintStart_toStartOf="@id/movie_title_text"
+                app:layout_constraintTop_toBottomOf="@id/genere_label_text"
+                tools:itemCount="5"
+                tools:listitem="@layout/genere_item" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/production_house_label_text"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:text="@string/production_houses"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_text_24"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/genere_recycler_view"
+                app:layout_constraintVertical_bias="0.025"
+                app:layout_constraintWidth_percent="0.9"
+
+                tools:text="Avenger End Games" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/production_houses_recycler_view"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/movie_title_text"
+                app:layout_constraintStart_toStartOf="@id/movie_title_text"
+                app:layout_constraintTop_toBottomOf="@id/production_house_label_text"
+                tools:itemCount="5"
+                tools:listitem="@layout/production_houses_item" />
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

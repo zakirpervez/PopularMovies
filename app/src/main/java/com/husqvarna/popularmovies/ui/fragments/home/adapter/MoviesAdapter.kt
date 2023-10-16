@@ -3,15 +3,11 @@ package com.husqvarna.popularmovies.ui.fragments.home.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
-import com.google.android.material.imageview.ShapeableImageView
 import com.husqvarna.popularmovies.BuildConfig
-import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.api.models.response.ResultsItem
 import com.husqvarna.popularmovies.databinding.MovieItemBinding
-import java.util.Locale
+import com.husqvarna.popularmovies.util.loadImage
+import java.util.*
 import javax.inject.Inject
 
 class MoviesAdapter @Inject constructor(): RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
@@ -31,20 +27,9 @@ class MoviesAdapter @Inject constructor(): RecyclerView.Adapter<MoviesAdapter.Mo
             holder.binding.movie = this
             holder.binding.root.setOnClickListener { itemClickListener?.onMovieClick(this) }
             originalLanguage?.let { holder.binding.languageText.text = Locale(it).displayLanguage }
-            loadPosterImage(holder.binding.moviePosterImage, posterPath)
+            val posterUrl = "${BuildConfig.IMAGES_URL}${posterPath}"
+            holder.binding.moviePosterImage.loadImage(posterUrl)
         }
-    }
-
-    private fun loadPosterImage(moviePosterImage: ShapeableImageView, posterPath: String?) {
-        val posterUrl = "${BuildConfig.IMAGES_URL}${posterPath}"
-        val  glideRequestOptions = RequestOptions()
-            .placeholder(R.drawable.baseline_image_24)
-            .error(R.drawable.baseline_broken_image_24)
-            .diskCacheStrategy(DiskCacheStrategy.ALL);
-        Glide.with(moviePosterImage.context)
-            .load(posterUrl)
-            .apply(glideRequestOptions)
-            .into(moviePosterImage)
     }
 
     fun updateMovies(movies: List<ResultsItem?>) {

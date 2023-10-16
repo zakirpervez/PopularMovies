@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="generesItem"
+            type="com.husqvarna.popularmovies.api.models.response.GenresItem" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="@dimen/dimen_120"
+        android:layout_height="@dimen/dimen_48"
+        android:background="@drawable/chip_rect"
+        android:layout_marginStart="@dimen/dimen_4"
+        android:layout_marginEnd="@dimen/dimen_4"
+        app:layoutDescription="@xml/genere_item_scene">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/genere_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:text="@{generesItem.name}"/>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

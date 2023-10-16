@@ -61,7 +61,7 @@ class MoviesFragment : Fragment() {
         moviesAdapter.setOnMovieItemClickListener(object :
             MoviesAdapter.OnMovieItemClickListener {
             override fun onMovieClick(movie: ResultsItem) {
-                findNavController().navigate(R.id.action_moviesFragment_to_movieDetailFragment)
+                navigateToDetails(movie)
             }
         })
 
@@ -69,6 +69,15 @@ class MoviesFragment : Fragment() {
             itemAnimator = null
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = moviesAdapter
+        }
+    }
+
+    private fun navigateToDetails(movie: ResultsItem) {
+        movie.id?.let {
+            // Added bundle due to bug present in android giraffe where it won't recognize the safe args inside navigation graph.
+            val args = Bundle()
+            args.putInt("movieId", it)
+            findNavController().navigate(R.id.action_moviesFragment_to_movieDetailFragment, args)
         }
     }
 

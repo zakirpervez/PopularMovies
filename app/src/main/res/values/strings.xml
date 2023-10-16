@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PopularMovies</string>
+    <string name="imdb_rating">IMDB Rating</string>
+    <string name="popularity">Popularity</string>
+    <string name="generes">Generes</string>
+    <string name="production_houses">Production Houses</string>
 </resources>

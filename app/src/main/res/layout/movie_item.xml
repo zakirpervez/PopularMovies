@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="@color/purple"
+        android:background="@color/dull_purple"
         app:layoutDescription="@xml/movie_item_scene">
 
         <FrameLayout
@@ -45,7 +45,7 @@
 
             tools:src="@drawable/husqvarna_logo_vector"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movie_title_text"
             android:layout_width="@dimen/dimen_0"
             android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
             app:srcCompat="@drawable/baseline_calendar_month_24"
             />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/released_date_text"
             android:layout_width="@dimen/dimen_0"
             android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
             app:srcCompat="@drawable/baseline_language_24"
             />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/language_text"
             android:layout_width="@dimen/dimen_0"
             android:layout_height="wrap_content"
