@@ -7,10 +7,10 @@ import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.api.models.response.ResultsItem
 import com.husqvarna.popularmovies.databinding.MovieItemBinding
 import com.husqvarna.popularmovies.util.loadImage
-import java.util.*
+import java.util.Locale
 import javax.inject.Inject
 
-class MoviesAdapter @Inject constructor(): RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
+class MoviesAdapter @Inject constructor() : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
     private val moviesList = mutableListOf<ResultsItem?>()
     private var itemClickListener: OnMovieItemClickListener? = null
 
@@ -46,7 +46,8 @@ class MoviesAdapter @Inject constructor(): RecyclerView.Adapter<MoviesAdapter.Mo
     fun setOnMovieItemClickListener(listener: OnMovieItemClickListener) {
         itemClickListener = listener
     }
-    class MoviesViewHolder(val binding: MovieItemBinding): RecyclerView.ViewHolder(binding.root)
+
+    class MoviesViewHolder(val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     interface OnMovieItemClickListener {
         fun onMovieClick(movie: ResultsItem)

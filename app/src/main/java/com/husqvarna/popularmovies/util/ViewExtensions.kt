@@ -7,7 +7,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.husqvarna.popularmovies.R
 
 fun ShapeableImageView.loadImage(url: String) {
-    val  glideRequestOptions = RequestOptions()
+    val glideRequestOptions = RequestOptions()
         .placeholder(R.drawable.baseline_image_24)
         .error(R.drawable.baseline_broken_image_24)
         .diskCacheStrategy(DiskCacheStrategy.ALL)

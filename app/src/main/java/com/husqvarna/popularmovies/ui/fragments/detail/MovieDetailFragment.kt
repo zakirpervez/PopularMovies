@@ -1,17 +1,13 @@
 package com.husqvarna.popularmovies.ui.fragments.detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
 import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.databinding.FragmentMovieDetailBinding
@@ -29,8 +25,12 @@ class MovieDetailFragment : Fragment() {
     private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!!
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModels()
-    @Inject lateinit var generesAdapter: GeneresAdapter
-    @Inject lateinit var productionCompaniesAdapter: ProductionCompaniesAdapter
+
+    @Inject
+    lateinit var generesAdapter: GeneresAdapter
+
+    @Inject
+    lateinit var productionCompaniesAdapter: ProductionCompaniesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +61,7 @@ class MovieDetailFragment : Fragment() {
             itemAnimator = null
             layoutManager = LinearLayoutManager(
                 requireContext(),
-                androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                LinearLayoutManager.HORIZONTAL,
                 false
             )
             adapter = generesAdapter
@@ -71,7 +71,7 @@ class MovieDetailFragment : Fragment() {
             itemAnimator = null
             layoutManager = LinearLayoutManager(
                 requireContext(),
-                androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL,
+                LinearLayoutManager.HORIZONTAL,
                 false
             )
             adapter = productionCompaniesAdapter
@@ -99,7 +99,9 @@ class MovieDetailFragment : Fragment() {
                 binding.moviePosterImage.loadImage(posterUrl)
             }
             generesAdapter.updateGeneres(it?.genres ?: emptyList())
-            productionCompaniesAdapter.updateProductionCompanies(it?.productionCompanies ?: emptyList())
+            productionCompaniesAdapter.updateProductionCompanies(
+                it?.productionCompanies ?: emptyList()
+            )
         }
 
         movieDetailsViewModel.errorLiveData.observe(viewLifecycleOwner) {

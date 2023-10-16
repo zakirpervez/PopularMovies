@@ -1,9 +1,8 @@
 package com.husqvarna.popularmovies.di
 
-import android.content.Context
 import com.husqvarna.popularmovies.BuildConfig
-import com.husqvarna.popularmovies.api.interceptor.ApiRequestInterceptor
 import com.husqvarna.popularmovies.api.ApiService
+import com.husqvarna.popularmovies.api.interceptor.ApiRequestInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,21 +17,25 @@ import timber.log.Timber
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
     @Provides
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor {
-        message -> Timber.d(message)
-    }.apply {
-        setLevel(HttpLoggingInterceptor.Level.BODY)
-    }
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor { message ->
+            Timber.d(message)
+        }.apply {
+            setLevel(HttpLoggingInterceptor.Level.BODY)
+        }
 
     @Provides
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, appContext: Context, apiRequestInterceptor: ApiRequestInterceptor): OkHttpClient =
+    fun provideOkHttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        apiRequestInterceptor: ApiRequestInterceptor,
+    ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(apiRequestInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .build()
 
     @Provides
-    fun provideRetrofitInstance(okHttpClient: OkHttpClient) : Retrofit = Retrofit.Builder()
+    fun provideRetrofitInstance(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())

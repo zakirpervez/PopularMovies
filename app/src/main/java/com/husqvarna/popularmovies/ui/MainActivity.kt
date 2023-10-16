@@ -2,7 +2,6 @@ package com.husqvarna.popularmovies.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -20,14 +19,17 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var mAppContext: Context
+
     @Suppress("UNUSED_VARIABLE")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val activityMainBinding: ActivityMainBinding = DataBindingUtil.setContentView(this,
+        val activityMainBinding: ActivityMainBinding = DataBindingUtil.setContentView(
+            this,
             R.layout.activity_main
         )
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.findNavController()
     }
 }

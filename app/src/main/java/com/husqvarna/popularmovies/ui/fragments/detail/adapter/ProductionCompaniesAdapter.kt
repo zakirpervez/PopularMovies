@@ -8,7 +8,7 @@ import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.api.models.response.ProductionCompaniesItem
 import com.husqvarna.popularmovies.databinding.ProductionHousesItemBinding
 import com.husqvarna.popularmovies.util.loadImage
-import java.util.Locale
+import java.util.*
 
 class ProductionCompaniesAdapter :
     RecyclerView.Adapter<ProductionCompaniesAdapter.ProductionCompaniesViewHolder>() {
@@ -31,7 +31,7 @@ class ProductionCompaniesAdapter :
         holder.binding.productionCompaniesItem = productionCompaniesItem
         val posterUrl = "${BuildConfig.IMAGES_URL}${productionCompaniesItem?.logoPath}"
         holder.binding.productionHouseImage.loadImage(posterUrl)
-        productionCompaniesItem?.originCountry.let { countryCode->
+        productionCompaniesItem?.originCountry?.let { countryCode ->
             holder.binding.countryText.text = Locale(countryCode).displayCountry
         }
     }

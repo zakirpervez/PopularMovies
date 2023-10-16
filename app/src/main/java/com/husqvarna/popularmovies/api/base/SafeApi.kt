@@ -5,6 +5,7 @@ import retrofit2.Response
 
 private const val ERROR_RESPONSE_NULL = "Response body is null"
 private const val ERROR_UNKNOWN = "Something went wrong"
+
 interface SafeApi {
     suspend fun <T> execute(call: suspend () -> Response<T>): ApiResult<T> {
         try {

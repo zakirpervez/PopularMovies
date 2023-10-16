@@ -12,16 +12,16 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="@dimen/dimen_0"
+            android:background="@color/purple_200"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/app_navigation_graph"
-            android:background="@color/purple_200"
 
-            android:layout_width="@dimen/dimen_0"
-            android:layout_height="@dimen/dimen_0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/app_navigation_graph" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,11 +1,11 @@
 package com.husqvarna.popularmovies.ui.fragments.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +23,8 @@ class MoviesFragment : Fragment() {
     private var _moviesBinding: FragmentMoviesBinding? = null
     private val moviesBinding by lazy { _moviesBinding!! }
 
-    @Inject lateinit var moviesAdapter: MoviesAdapter
+    @Inject
+    lateinit var moviesAdapter: MoviesAdapter
     private val moviesViewModel: MoviesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +68,8 @@ class MoviesFragment : Fragment() {
 
         with(moviesBinding.smsRecyclerView) {
             itemAnimator = null
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = moviesAdapter
         }
     }
