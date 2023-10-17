@@ -92,7 +92,9 @@ dependencies {
 
     // Unit Tests
     testImplementation("junit:junit:4.13.2")
+    testImplementation("android.arch.core:core-testing:1.1.1")
     testImplementation("io.mockk:mockk:1.13.8")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
 
     // Instrumentation Tests
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

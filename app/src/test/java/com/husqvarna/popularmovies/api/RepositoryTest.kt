@@ -7,7 +7,6 @@ import com.husqvarna.popularmovies.api.source.ApiDataSource
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
