@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class ApiRequestInterceptor @Inject constructor() : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val requestBuilder = chain.request().newBuilder();
+        val requestBuilder = chain.request().newBuilder()
         requestBuilder.header(CONTENT_TYPE_KEY, CONTENT_TYPE_VALUE)
         requestBuilder.header(AUTHORIZATION_KEY, AUTHORIZATION_VALUE)
         return chain.proceed(requestBuilder.build())
