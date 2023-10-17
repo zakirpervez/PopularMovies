@@ -5,19 +5,19 @@
 
 <h3>Software Stack:</h3>
 1. Android Studio
-2. Java
-3. Kotlin
-4. XML
-5. Material Design
-6. Constraint Layout
-7. Jetpack Navigation Component
-8. Glide
-9. Retrofit
-10. Hilt Dagger
-11. Coroutines
-12. Android Architecture Components
-13. MVVM
-14. Junit4
+2. Kotlin
+3. XML
+4. Material Design
+5. Constraint/Motion Layout
+6. Jetpack Navigation Component
+7. Glide
+8. Retrofit 
+9. Hilt Dagger
+10. Coroutines
+11. Android Architecture Components
+12. MVVM
+13. Junit4
+14. MockK
 
 <h3>Git branching strategy</h3>
 
@@ -61,6 +61,9 @@ This is application is built using a MVVM architecture.
 <h3>Testing</h3>
 1. Unit Testing: Unit testing is done using Junit4 and mockK.
 2. Instrumentation Testing: No Instrument testing is done [Note: Please let me know if you want me to add the instrument test cases.]
+
+<h3>Testing</h3>
+<p>As of now I am not proguarding/dexguarding the apk as well as not providing in api key and network security.</p>
 
 <h3>App Screens</h3>
 1. Splash Screen: Stay for 3 seconds and then navigate to Home Screen.
