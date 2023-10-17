@@ -3,10 +3,10 @@ package com.husqvarna.popularmovies.api.base
 import com.husqvarna.popularmovies.api.models.ApiResult
 import retrofit2.Response
 
-private const val ERROR_RESPONSE_NULL = "Response body is null"
-private const val ERROR_UNKNOWN = "Something went wrong"
+const val ERROR_RESPONSE_NULL = "Response body is null"
+const val ERROR_UNKNOWN = "Something went wrong"
 
-interface SafeApi {
+open class SafeApi {
     suspend fun <T> execute(call: suspend () -> Response<T>): ApiResult<T> {
         try {
             val apiResponse = call.invoke()

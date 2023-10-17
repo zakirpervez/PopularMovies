@@ -92,6 +92,7 @@ dependencies {
 
     // Unit Tests
     testImplementation("junit:junit:4.13.2")
+    testImplementation("io.mockk:mockk:1.13.8")
 
     // Instrumentation Tests
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

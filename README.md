@@ -29,7 +29,7 @@ Note: As I am single developer, I am not creating any feature branches. I am dir
 
 <h3>Commit guidelines</h3>
 <p>Commit should always be make in following format</p>
-<p>type(scope): <commit_description>-[ticket/issue_number].</p>
+<p>type(scope): [commit-details-message]-[ticket/issue_number]</p>
 
 <p>type: Type should be represent the nature of commit. It can be one of the following.</p>
 1. feat: A new code which is return for the feature.
@@ -47,7 +47,7 @@ Note: As I am single developer, I am not creating any feature branches. I am dir
 4. App
 5. Api
 
-<p>commit_description: A short, concise summary of the changes.</p>
+<p>commit-details-message: A short, concise summary of the changes.</p>
 
 <p>ticket/issue_number: Represent JIRA/Github/Gitlab ticket/issue number.</p>
 
