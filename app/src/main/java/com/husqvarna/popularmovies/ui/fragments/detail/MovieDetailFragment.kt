@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.husqvarna.popularmovies.BuildConfig
@@ -14,6 +15,7 @@ import com.husqvarna.popularmovies.databinding.FragmentMovieDetailBinding
 import com.husqvarna.popularmovies.ui.fragments.detail.adapter.GeneresAdapter
 import com.husqvarna.popularmovies.ui.fragments.detail.adapter.ProductionCompaniesAdapter
 import com.husqvarna.popularmovies.ui.viewmodel.MovieDetailsViewModel
+import com.husqvarna.popularmovies.ui.viewmodel.SharedViewModel
 import com.husqvarna.popularmovies.util.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
@@ -25,6 +27,7 @@ class MovieDetailFragment : Fragment() {
     private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!!
     private val movieDetailsViewModel: MovieDetailsViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     @Inject
     lateinit var generesAdapter: GeneresAdapter
@@ -35,6 +38,7 @@ class MovieDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.getInt("movieId")?.let { movieId ->
+            sharedViewModel.showLoader(true)
             movieDetailsViewModel.fetchMovieDetails(movieId)
         }
     }
@@ -80,7 +84,6 @@ class MovieDetailFragment : Fragment() {
 
     private fun observeData() {
         movieDetailsViewModel.moviesDetailsLiveData.observe(viewLifecycleOwner) {
-            movieDetailsViewModel.isLoading.set(false)
             movieDetailsViewModel.movieTitleMutableLiveData.value = it?.title
             movieDetailsViewModel.movieTagLineMutableLiveData.value = it?.tagline
             movieDetailsViewModel.releaseDateMutableLiveData.value = it?.releaseDate
@@ -102,9 +105,11 @@ class MovieDetailFragment : Fragment() {
             productionCompaniesAdapter.updateProductionCompanies(
                 it?.productionCompanies ?: emptyList()
             )
+            sharedViewModel.showLoader(false)
         }
 
         movieDetailsViewModel.errorLiveData.observe(viewLifecycleOwner) {
+            sharedViewModel.showLoader(false)
             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
         }
     }

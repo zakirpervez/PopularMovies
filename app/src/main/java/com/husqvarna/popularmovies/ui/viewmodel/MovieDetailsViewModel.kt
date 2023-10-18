@@ -26,15 +26,12 @@ class MovieDetailsViewModel @Inject constructor(private val repository: Reposito
     val popularityMutableLiveData = MutableLiveData<String>()
 
     fun fetchMovieDetails(movieId: Int) = viewModelScope.launch(Dispatchers.IO) {
-        isLoading.set(true)
         when (val response = repository.fetchMovieDetails(movieId)) {
             is ApiResult.Success<MovieDetailsResponse> -> {
-                isLoading.set(false)
                 _moviesDetailsLiveData.postValue(response.data)
             }
 
             is ApiResult.Error -> {
-                isLoading.set(false)
                 _errorLiveData.postValue(response.errorMessage)
             }
         }

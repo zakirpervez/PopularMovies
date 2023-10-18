@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import com.husqvarna.popularmovies.api.models.response.ResultsItem
 import com.husqvarna.popularmovies.databinding.FragmentMoviesBinding
 import com.husqvarna.popularmovies.ui.fragments.home.adapter.MoviesAdapter
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
+import com.husqvarna.popularmovies.ui.viewmodel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -26,6 +28,7 @@ class MoviesFragment : Fragment() {
     @Inject
     lateinit var moviesAdapter: MoviesAdapter
     private val moviesViewModel: MoviesViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +47,7 @@ class MoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedViewModel.showLoader(true)
         observeData()
         setupViews()
     }
@@ -51,9 +55,11 @@ class MoviesFragment : Fragment() {
     private fun observeData() {
         moviesViewModel.moviesLiveData.observe(viewLifecycleOwner) {
             it?.apply { moviesAdapter.updateMovies(this) }
+            sharedViewModel.showLoader(false)
         }
 
         moviesViewModel.errorLiveData.observe(viewLifecycleOwner) {
+            sharedViewModel.showLoader(false)
             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
         }
     }
