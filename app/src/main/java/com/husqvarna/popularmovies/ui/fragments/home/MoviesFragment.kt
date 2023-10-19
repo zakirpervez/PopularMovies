@@ -8,15 +8,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.c1ctech.jetpackpagingexp.ui.PassengersLoadStateAdapter
 import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.api.models.response.ResultsItem
 import com.husqvarna.popularmovies.databinding.FragmentMoviesBinding
 import com.husqvarna.popularmovies.ui.fragments.home.adapter.MoviesAdapter
+import com.husqvarna.popularmovies.ui.fragments.home.paging.MoviesPagingAdapter
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
 import com.husqvarna.popularmovies.ui.viewmodel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -30,13 +34,13 @@ class MoviesFragment : Fragment() {
     private val moviesBinding by lazy { _moviesBinding!! }
 
     @Inject
-    lateinit var moviesAdapter: MoviesAdapter
+    lateinit var moviesPagingAdapter: MoviesPagingAdapter
     private val moviesViewModel: MoviesViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        moviesViewModel.fetchMovies(1)
+//        moviesViewModel.fetchMovies(1)
     }
 
     override fun onCreateView(
@@ -61,7 +65,7 @@ class MoviesFragment : Fragment() {
      */
     private fun observeData() {
         moviesViewModel.moviesLiveData.observe(viewLifecycleOwner) {
-            it?.apply { moviesAdapter.updateMovies(this) }
+//            it?.apply { moviesAdapter.updateMovies(this) }
             sharedViewModel.showLoader(false)
         }
 
@@ -75,18 +79,33 @@ class MoviesFragment : Fragment() {
      * Setup the views.
      */
     private fun setupViews() {
-        moviesAdapter.setOnMovieItemClickListener(object :
-            MoviesAdapter.OnMovieItemClickListener {
-            override fun onMovieClick(movie: ResultsItem) {
-                navigateToDetails(movie)
-            }
-        })
+//        moviesAdapter.setOnMovieItemClickListener(object :
+//            MoviesAdapter.OnMovieItemClickListener {
+//            override fun onMovieClick(movie: ResultsItem) {
+//                navigateToDetails(movie)
+//            }
+//        })
+
+//        with(moviesBinding.smsRecyclerView) {
+//            itemAnimator = null
+//            layoutManager =
+//                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+//            adapter = moviesAdapter
+//        }
 
         with(moviesBinding.smsRecyclerView) {
             itemAnimator = null
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = moviesAdapter
+            adapter = moviesPagingAdapter
+            adapter = moviesPagingAdapter.withLoadStateHeaderAndFooter(
+                header = PassengersLoadStateAdapter { moviesPagingAdapter.retry() },
+                footer = PassengersLoadStateAdapter { moviesPagingAdapter.retry() }
+            )
+        }
+
+        lifecycleScope.launch {
+            moviesViewModel.movies.collectLatest { pagedData ->
+                moviesPagingAdapter.submitData(pagedData)
+            }
         }
     }
 

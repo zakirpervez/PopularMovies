@@ -3,6 +3,7 @@ package com.husqvarna.popularmovies.di
 import com.husqvarna.popularmovies.ui.fragments.detail.adapter.GeneresAdapter
 import com.husqvarna.popularmovies.ui.fragments.detail.adapter.ProductionCompaniesAdapter
 import com.husqvarna.popularmovies.ui.fragments.home.adapter.MoviesAdapter
+import com.husqvarna.popularmovies.ui.fragments.home.paging.MoviesPagingAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,5 +41,14 @@ class FragmentModule {
     @Provides
     fun provideProductionCompaniesAdapter(): ProductionCompaniesAdapter {
         return ProductionCompaniesAdapter()
+    }
+
+    /**
+     * Provide the production companies adapter.
+     * @return [ProductionCompaniesAdapter]
+     */
+    @Provides
+    fun provideMoviesPagingAdapter(): MoviesPagingAdapter {
+        return MoviesPagingAdapter()
     }
 }
