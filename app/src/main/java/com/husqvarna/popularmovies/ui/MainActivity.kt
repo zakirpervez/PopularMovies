@@ -15,6 +15,9 @@ import com.husqvarna.popularmovies.ui.viewmodel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+/**
+ * Main activity for the app. Represent the single activity architecture.
+ */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 

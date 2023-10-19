@@ -8,19 +8,35 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.FragmentComponent
 
+
+/**
+ * Fragment module for providing the fragment level injection.
+ */
 @Module
 @InstallIn(FragmentComponent::class)
 class FragmentModule {
+    /**
+     * Provide the movies adapter.
+     * @return [MoviesAdapter]
+     */
     @Provides
     fun provideMoviesAdapter(): MoviesAdapter {
         return MoviesAdapter()
     }
 
+    /**
+     * Provide the generes adapter.
+     * @return [GeneresAdapter]
+     */
     @Provides
     fun provideGeneresAdapter(): GeneresAdapter {
         return GeneresAdapter()
     }
 
+    /**
+     * Provide the production companies adapter.
+     * @return [ProductionCompaniesAdapter]
+     */
     @Provides
     fun provideProductionCompaniesAdapter(): ProductionCompaniesAdapter {
         return ProductionCompaniesAdapter()

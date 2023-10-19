@@ -10,6 +10,9 @@ import com.husqvarna.popularmovies.databinding.ProductionHousesItemBinding
 import com.husqvarna.popularmovies.util.loadImage
 import java.util.*
 
+/**
+ * Adapter class for the production companies list.
+ */
 class ProductionCompaniesAdapter :
     RecyclerView.Adapter<ProductionCompaniesAdapter.ProductionCompaniesViewHolder>() {
 
@@ -36,6 +39,10 @@ class ProductionCompaniesAdapter :
         }
     }
 
+    /**
+     * Update the production companies list.
+     * @param productionCompanies The [List] of production companies.
+     */
     @SuppressLint("NotifyDataSetChanged")
     fun updateProductionCompanies(productionCompanies: List<ProductionCompaniesItem?>) {
         if (productionCompaniesList.isNotEmpty()) {
@@ -45,6 +52,10 @@ class ProductionCompaniesAdapter :
         notifyDataSetChanged()
     }
 
+    /**
+     * View holder class for the production companies list.
+     * @param binding The [ProductionHousesItemBinding] binding.
+     */
     class ProductionCompaniesViewHolder(val binding: ProductionHousesItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 }

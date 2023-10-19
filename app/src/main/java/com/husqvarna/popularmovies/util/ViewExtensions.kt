@@ -6,6 +6,9 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.imageview.ShapeableImageView
 import com.husqvarna.popularmovies.R
 
+/**
+ * Extension function for loading the image from the url using a glide.
+ */
 fun ShapeableImageView.loadImage(url: String) {
     val glideRequestOptions = RequestOptions()
         .placeholder(R.drawable.baseline_image_24)

@@ -10,6 +10,9 @@ import com.husqvarna.popularmovies.util.loadImage
 import java.util.Locale
 import javax.inject.Inject
 
+/**
+ * Adapter class for the movies list.
+ */
 class MoviesAdapter @Inject constructor() : RecyclerView.Adapter<MoviesAdapter.MoviesViewHolder>() {
     private val moviesList = mutableListOf<ResultsItem?>()
     private var itemClickListener: OnMovieItemClickListener? = null
@@ -32,6 +35,10 @@ class MoviesAdapter @Inject constructor() : RecyclerView.Adapter<MoviesAdapter.M
         }
     }
 
+    /**
+     * Update the movies list.
+     * @param movies The [List] of movies.
+     */
     fun updateMovies(movies: List<ResultsItem?>) {
         val oldSize = if (moviesList.isEmpty()) {
             0
@@ -43,13 +50,26 @@ class MoviesAdapter @Inject constructor() : RecyclerView.Adapter<MoviesAdapter.M
         notifyItemChanged(oldSize, newSize)
     }
 
+    /**
+     * Set the [OnMovieItemClickListener] listener.
+     */
     fun setOnMovieItemClickListener(listener: OnMovieItemClickListener) {
         itemClickListener = listener
     }
 
+    /**
+     * View holder class for the movies list.
+     * @param binding The [MovieItemBinding] binding.
+     */
     class MoviesViewHolder(val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root)
 
+    /**
+     * Interface to handle the movie item click.
+     */
     interface OnMovieItemClickListener {
+        /**
+         * Handle the movie item click.
+         */
         fun onMovieClick(movie: ResultsItem)
     }
 }

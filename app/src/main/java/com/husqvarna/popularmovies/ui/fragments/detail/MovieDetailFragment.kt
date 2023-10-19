@@ -21,6 +21,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 import javax.inject.Inject
 
+/**
+ * [MovieDetailFragment] represent the movie details screen.
+ */
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
 
@@ -60,6 +63,9 @@ class MovieDetailFragment : Fragment() {
         setupViews()
     }
 
+    /**
+     * Setup the views.
+     */
     private fun setupViews() {
         with(binding.genereRecyclerView) {
             itemAnimator = null
@@ -82,6 +88,9 @@ class MovieDetailFragment : Fragment() {
         }
     }
 
+    /**
+     * Observe the data from the view-model.
+     */
     private fun observeData() {
         movieDetailsViewModel.moviesDetailsLiveData.observe(viewLifecycleOwner) {
             movieDetailsViewModel.movieTitleMutableLiveData.value = it?.title

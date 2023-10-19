@@ -6,7 +6,15 @@ import retrofit2.Response
 const val ERROR_RESPONSE_NULL = "Response body is null"
 const val ERROR_UNKNOWN = "Something went wrong"
 
+/**
+ * A helper class to execute retrofit calls safely and wrap it its result in [ApiResult].
+ */
 open class SafeApi {
+    /**
+     * Executes a retrofit call and wraps its result in [ApiResult].
+     * @param call The retrofit call to execute.
+     * @return [ApiResult] with the result of the call.
+     */
     suspend fun <T> execute(call: suspend () -> Response<T>): ApiResult<T> {
         try {
             val apiResponse = call.invoke()

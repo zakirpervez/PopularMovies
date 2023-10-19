@@ -19,6 +19,10 @@ import com.husqvarna.popularmovies.ui.viewmodel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+
+/**
+ * [MoviesFragment] represent the movies list screen.
+ */
 @AndroidEntryPoint
 class MoviesFragment : Fragment() {
 
@@ -52,6 +56,9 @@ class MoviesFragment : Fragment() {
         setupViews()
     }
 
+    /**
+     * Observe the data from the [MoviesViewModel].
+     */
     private fun observeData() {
         moviesViewModel.moviesLiveData.observe(viewLifecycleOwner) {
             it?.apply { moviesAdapter.updateMovies(this) }
@@ -64,6 +71,9 @@ class MoviesFragment : Fragment() {
         }
     }
 
+    /**
+     * Setup the views.
+     */
     private fun setupViews() {
         moviesAdapter.setOnMovieItemClickListener(object :
             MoviesAdapter.OnMovieItemClickListener {
@@ -80,6 +90,10 @@ class MoviesFragment : Fragment() {
         }
     }
 
+    /**
+     * Navigate to the movie details screen.
+     * @param movie The [ResultsItem] movie item.
+     */
     private fun navigateToDetails(movie: ResultsItem) {
         movie.id?.let {
             // Added bundle due to bug present in android giraffe where it won't recognize the safe args inside navigation graph.

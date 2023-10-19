@@ -11,6 +11,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * View-model class for the movie details screen.
+ */
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(private val repository: Repository) :
     BaseViewModel() {
@@ -25,6 +28,10 @@ class MovieDetailsViewModel @Inject constructor(private val repository: Reposito
     val imdbRatingMutableLiveData = MutableLiveData<String>()
     val popularityMutableLiveData = MutableLiveData<String>()
 
+    /**
+     * Fetch the movie details from the server.
+     * @see [repository.fetchMovieDetails]
+     */
     fun fetchMovieDetails(movieId: Int) = viewModelScope.launch(Dispatchers.IO) {
         when (val response = repository.fetchMovieDetails(movieId)) {
             is ApiResult.Success<MovieDetailsResponse> -> {
