@@ -25,6 +25,10 @@ class MoviesPagingAdapter: PagingDataAdapter<ResultsItem, MoviesPagingAdapter.Mo
         }
     }
 
+    fun setOnMovieItemClickListener(listener: OnMovieItemClickListener) {
+        itemClickListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val binding = MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MoviesViewHolder(binding)

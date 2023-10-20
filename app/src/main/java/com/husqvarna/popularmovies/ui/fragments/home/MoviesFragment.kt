@@ -10,11 +10,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.c1ctech.jetpackpagingexp.ui.PassengersLoadStateAdapter
 import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.api.models.response.ResultsItem
 import com.husqvarna.popularmovies.databinding.FragmentMoviesBinding
-import com.husqvarna.popularmovies.ui.fragments.home.adapter.MoviesAdapter
 import com.husqvarna.popularmovies.ui.fragments.home.paging.MoviesPagingAdapter
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
 import com.husqvarna.popularmovies.ui.viewmodel.SharedViewModel
@@ -38,24 +36,19 @@ class MoviesFragment : Fragment() {
     private val moviesViewModel: MoviesViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        moviesViewModel.fetchMovies(1)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         _moviesBinding = FragmentMoviesBinding.inflate(inflater, container, false)
+        moviesBinding.lifecycleOwner = viewLifecycleOwner
         moviesBinding.viewModel = moviesViewModel
         return moviesBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedViewModel.showLoader(true)
         observeData()
         setupViews()
     }
@@ -64,9 +57,8 @@ class MoviesFragment : Fragment() {
      * Observe the data from the [MoviesViewModel].
      */
     private fun observeData() {
-        moviesViewModel.moviesLiveData.observe(viewLifecycleOwner) {
-//            it?.apply { moviesAdapter.updateMovies(this) }
-            sharedViewModel.showLoader(false)
+        moviesViewModel.loaderLiveData.observe(viewLifecycleOwner) {
+            sharedViewModel.showLoader(it)
         }
 
         moviesViewModel.errorLiveData.observe(viewLifecycleOwner) {
@@ -79,27 +71,16 @@ class MoviesFragment : Fragment() {
      * Setup the views.
      */
     private fun setupViews() {
-//        moviesAdapter.setOnMovieItemClickListener(object :
-//            MoviesAdapter.OnMovieItemClickListener {
-//            override fun onMovieClick(movie: ResultsItem) {
-//                navigateToDetails(movie)
-//            }
-//        })
-
-//        with(moviesBinding.smsRecyclerView) {
-//            itemAnimator = null
-//            layoutManager =
-//                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-//            adapter = moviesAdapter
-//        }
-
         with(moviesBinding.smsRecyclerView) {
             itemAnimator = null
             adapter = moviesPagingAdapter
-            adapter = moviesPagingAdapter.withLoadStateHeaderAndFooter(
-                header = PassengersLoadStateAdapter { moviesPagingAdapter.retry() },
-                footer = PassengersLoadStateAdapter { moviesPagingAdapter.retry() }
-            )
+
+            moviesPagingAdapter.setOnMovieItemClickListener(object :
+                MoviesPagingAdapter.OnMovieItemClickListener {
+                override fun onMovieClick(movie: ResultsItem) {
+                    navigateToDetails(movie)
+                }
+            })
         }
 
         lifecycleScope.launch {

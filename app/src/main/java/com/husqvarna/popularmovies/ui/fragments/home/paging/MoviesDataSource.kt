@@ -9,16 +9,21 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MoviesDataSource @Inject constructor(private val repository: Repository) :
+/**
+ * [MoviesDataSource] is the data source class for the movies list.
+ */
+class MoviesDataSource @Inject constructor(private val repository: Repository, private val apiLoadingListener: ApiLoadingStateListener? = null) :
     PagingSource<Int, ResultsItem>() {
+
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ResultsItem> {
+        apiLoadingListener?.loadingState(true)
         return try {
             val nextPageNumber = params.key ?: 1
             val apiResponse = CoroutineScope(Dispatchers.IO+Job()).async { repository.fetchPopularMovies(nextPageNumber) }
             val response = apiResponse.await()
+            apiLoadingListener?.loadingState(false)
             when(response){
                 is ApiResult.Success -> {
                     val data = response.data
@@ -34,11 +39,19 @@ class MoviesDataSource @Inject constructor(private val repository: Repository) :
                 }
             }
         } catch (e: Exception) {
+            apiLoadingListener?.loadingState(false)
             LoadResult.Error(e)
         }
     }
 
     override fun getRefreshKey(state: PagingState<Int, ResultsItem>): Int? {
         return state.anchorPosition
+    }
+
+    /**
+     * Interface to listen to the loading state of the API.
+     */
+    interface ApiLoadingStateListener {
+        fun loadingState(isLoading: Boolean)
     }
 }
