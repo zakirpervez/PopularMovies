@@ -58,7 +58,8 @@ Note: As I don't have any JIRA/Github/Gitlab ticket/issue number, I am assuming 
 <h3>Architecture Used</h3>
 This is application is built using a MVVM architecture.
 
-![mvvm_architecture](https://github.com/zakirpervez/PopularMovies/assets/16011892/3648fe0f-821f-4384-92a5-4a2a2005c4b5)
+![mvvm_architecture](https://github.com/zakirpervez/PopularMovies/assets/16011892/6a215e81-9461-4b6b-ba4f-022c63e5c1ce)
+
 
 <h3>Testing</h3>
 1. Unit Testing: Unit testing is done using Junit4 and mockK.
@@ -72,13 +73,13 @@ This is application is built using a MVVM architecture.
 
 <h3>App Screens</h3>
 1. Splash Screen: Stay for 3 seconds and then navigate to Home Screen.
-![Splash_screen](https://github.com/zakirpervez/PopularMovies/assets/16011892/0e2e9b09-5e39-406c-b94e-4a9e15e1dba7)
+![Splash_screen](https://github.com/zakirpervez/PopularMovies/assets/16011892/ecb36326-03c1-4fee-8a3f-3512eaa8b898)
 
 2. Home Screen: Show list of movies. User can click any movie to check its details.
-![homescreen](https://github.com/zakirpervez/PopularMovies/assets/16011892/318a3011-0cd1-4147-abe9-afc8bd0b0f85)
+![Screenshot_1697441042](https://github.com/zakirpervez/PopularMovies/assets/16011892/5b16c41d-c439-418e-8cfb-517735f10272)
 
 3. Movie Details Screen: Show movie details like title, release date, rating, overview etc.
-![details](https://github.com/zakirpervez/PopularMovies/assets/16011892/bda2e02e-a4ec-4e0e-be78-9c73a17fc65e)
+![Screenshot_1697486049](https://github.com/zakirpervez/PopularMovies/assets/16011892/b81b96b6-05e1-49b6-801f-4d6b9b2aad9a)
 
 <h3>Pending Work</h3>
 <ul>
