@@ -4,20 +4,22 @@
 <h2>Getting Started</h2>
 
 <h3>Software Stack:</h3>
-1. Android Studio
-2. Kotlin
-3. XML
-4. Material Design
-5. Constraint/Motion Layout
-6. Jetpack Navigation Component
-7. Glide
-8. Retrofit 
-9. Hilt Dagger
-10. Coroutines
-11. Android Architecture Components
-12. MVVM
-13. Junit4
-14. MockK
+<ol>
+<li>Android SDK</li>
+<li>Kotlin</li>
+<li>XML</li>
+<li>Constraint/Motion Layout</li>
+<li>Jetpack Navigation Component</li>
+<li>Jetpack Pagging</li>
+<li>Android Architecture Components</li>
+<li>Glide</li>
+<li>Retrofit</li>
+<li>Hilt Dagger</li>
+<li>Coroutines</li>
+<li>MVVM</li>
+<li>Junit4</li>
+<li>MockK</li>
+</ol>
 
 <h3>Git branching strategy</h3>
 
@@ -65,6 +67,9 @@ This is application is built using a MVVM architecture.
 <h3>Testing</h3>
 <p>As of now I am not proguarding/dexguarding the apk as well as not providing in api key and network security.</p>
 
+<h3>Code analysis</h3>
+<p>Integrated the Ktlint tool for code analysis.</p>
+
 <h3>App Screens</h3>
 1. Splash Screen: Stay for 3 seconds and then navigate to Home Screen.
 ![Splash_screen](https://github.com/zakirpervez/PopularMovies/assets/16011892/0e2e9b09-5e39-406c-b94e-4a9e15e1dba7)
@@ -74,6 +79,14 @@ This is application is built using a MVVM architecture.
 
 3. Movie Details Screen: Show movie details like title, release date, rating, overview etc.
 ![details](https://github.com/zakirpervez/PopularMovies/assets/16011892/bda2e02e-a4ec-4e0e-be78-9c73a17fc65e)
+
+<h3>Pending Work</h3>
+<ul>
+<li>No data screen handling</li>
+<li>Crashlytics, LeakCanary, Detekt integrations</li>
+<li>Code optimization and profiling</li>
+<li>Instrumentation test cases</li>
+</ul>
 
 
 
