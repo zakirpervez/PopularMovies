@@ -28,4 +28,9 @@
         android:name="com.husqvarna.popularmovies.ui.fragments.detail.MovieDetailFragment"
         android:label="fragment_movie_detail"
         tools:layout="@layout/fragment_movie_detail" />
+    <fragment
+        android:id="@+id/connectivityStatusFragment"
+        tools:layout="@layout/fragment_connectivity_status"
+        android:name="com.husqvarna.popularmovies.ui.fragments.connectivity.ConnectivityStatusFragment"
+        android:label="ConnectivityStatusFragment" />
 </navigation>

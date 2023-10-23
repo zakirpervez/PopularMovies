@@ -5,6 +5,8 @@
     <string name="generes">Generes</string>
     <string name="production_houses">Production Houses</string>
     <string name="no_data_found">No data found</string>
+    <string name="connect_to_internet">No internet connectivity\nPlease check your internet connection</string>
+    <string name="slow_internet">Slow interent connection</string>
 
     <string name="movie_item_cd">Movies poster images</string>
     <string name="movie_item_language_cd">Movies original language is </string>
@@ -13,4 +15,6 @@
     <string name="movie_budget_cd">Movies budget</string>
     <string name="movie_country_cd">Movies country</string>
     <string name="movie_production_house_cd">Movies production house</string>
+
+
 </resources>

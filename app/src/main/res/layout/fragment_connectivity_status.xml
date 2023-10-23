@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/yellow"
     android:gravity="center"
     android:orientation="vertical"
-    android:visibility="visible">
+    tools:context=".ui.fragments.connectivity.ConnectivityStatusFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/no_data_found_image"
@@ -15,14 +16,15 @@
         android:layout_gravity="center"
         android:background="@color/white"
         android:contentDescription="@string/no_data_found"
-        app:srcCompat="@drawable/baseline_playlist_remove_24" />
+        app:srcCompat="@drawable/baseline_signal_wifi_connected_no_internet_4_24" />
 
     <com.google.android.material.textview.MaterialTextView
         style="@style/Theme.App_Light.Text_Appearance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_8"
-        android:text="@string/no_data_found"
+        android:gravity="center"
+        android:text="@string/connect_to_internet"
         android:textSize="@dimen/dimen_text_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
