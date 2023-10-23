@@ -14,11 +14,10 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         tools:context=".ui.fragments.home.MoviesFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/sms_recycler_view"
+            android:id="@+id/movies_recycler_view"
             android:layout_width="@dimen/dimen_0"
             android:layout_height="@dimen/dimen_0"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -71,7 +71,7 @@ class MoviesFragment : Fragment() {
      * Setup the views.
      */
     private fun setupViews() {
-        with(moviesBinding.smsRecyclerView) {
+        with(moviesBinding.moviesRecyclerView) {
             itemAnimator = null
             adapter = moviesPagingAdapter
 
