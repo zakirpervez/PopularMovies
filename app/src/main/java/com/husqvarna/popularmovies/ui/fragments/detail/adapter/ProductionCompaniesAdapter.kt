@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.husqvarna.popularmovies.BuildConfig
+import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.api.models.response.ProductionCompaniesItem
 import com.husqvarna.popularmovies.databinding.ProductionHousesItemBinding
 import com.husqvarna.popularmovies.util.loadImage
@@ -36,6 +37,33 @@ class ProductionCompaniesAdapter :
         holder.binding.productionHouseImage.loadImage(posterUrl)
         productionCompaniesItem?.originCountry?.let { countryCode ->
             holder.binding.countryText.text = Locale(countryCode).displayCountry
+        }
+
+        setContentDescription(holder.binding, productionCompaniesItem)
+    }
+
+    /**
+     * Setup content description according the display item.
+     * @param binding [ProductionHousesItemBinding]
+     * @param productionCompaniesItem [ProductionCompaniesItem]
+     */
+    private fun setContentDescription(
+        binding: ProductionHousesItemBinding,
+        productionCompaniesItem: ProductionCompaniesItem?,
+    ) {
+        productionCompaniesItem?.let {
+            binding.productionHouseImage.contentDescription =
+                "${binding.countryImage.context.getString(R.string.movie_production_house_cd)} ${
+                    productionCompaniesItem.name
+                }"
+
+            productionCompaniesItem.originCountry?.let {
+                binding.countryImage.contentDescription =
+                    "${binding.countryImage.context.getString(R.string.movie_country_cd)} ${
+                        Locale(it).displayCountry
+                    }"
+            }
+
         }
     }
 

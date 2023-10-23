@@ -19,15 +19,11 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/genere_text"
+            style="@style/Theme.App_Light.Text_Appearance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:fontFamily="sans-serif"
             android:maxLines="1"
             android:text="@{generesItem.name}"
-            android:textColor="@color/white"
-
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

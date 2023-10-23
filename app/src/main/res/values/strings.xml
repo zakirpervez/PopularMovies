@@ -4,4 +4,12 @@
     <string name="popularity">Popularity</string>
     <string name="generes">Generes</string>
     <string name="production_houses">Production Houses</string>
+
+    <string name="movie_item_cd">Movies poster images</string>
+    <string name="movie_item_language_cd">Movies original language is </string>
+    <string name="movie_item_released_cd">Movie was release on</string>
+    <string name="movie_tagline_cd">Movies tagline</string>
+    <string name="movie_budget_cd">Movies budget</string>
+    <string name="movie_country_cd">Movies country</string>
+    <string name="movie_production_house_cd">Movies production house</string>
 </resources>

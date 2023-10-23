@@ -33,39 +33,37 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.02"
                 app:layout_constraintWidth_percent="0.98"
+                android:background="@color/purple_200"
                 tools:src="@drawable/husqvarna_logo_vector" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/movie_title_text"
+                style="@style/Theme.App_Light.Text_Appearance"
                 android:layout_width="@dimen/dimen_0"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.movieTitleMutableLiveData}"
-                android:textColor="@color/white"
                 android:textSize="@dimen/dimen_text_24"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movie_poster_image"
                 app:layout_constraintVertical_bias="0.025"
                 app:layout_constraintWidth_percent="0.9"
-
                 tools:text="Avenger End Games" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/movie_tagline_text"
+                style="@style/Theme.App_Light.Text_Appearance"
                 android:layout_width="@dimen/dimen_0"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:text="@{viewModel.movieTagLineMutableLiveData}"
-                android:textColor="@color/white"
                 android:textSize="@dimen/dimen_text_16"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movie_title_text"
                 app:layout_constraintWidth_percent="0.9"
-
                 tools:text="Avenger End Games" />
 
 
@@ -77,21 +75,19 @@
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintStart_toStartOf="@+id/movie_tagline_text"
                 app:layout_constraintTop_toBottomOf="@id/movie_tagline_text"
-
                 app:layout_constraintWidth_percent="0.08"
+                android:contentDescription="@string/movie_item_released_cd"
                 app:srcCompat="@drawable/baseline_calendar_month_24" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/released_date_text"
+                style="@style/Theme.App_Light.Text_Appearance"
                 android:layout_width="@dimen/dimen_0"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_8"
                 android:layout_marginTop="@dimen/dimen_4"
-                android:fontFamily="sans-serif"
                 android:text="@{viewModel.releaseDateMutableLiveData}"
-                android:textColor="@color/white"
                 android:textSize="@dimen/dimen_text_16"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/released_image"
                 app:layout_constraintEnd_toEndOf="@id/movie_title_text"
                 app:layout_constraintStart_toEndOf="@+id/released_image"
@@ -106,22 +102,20 @@
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintStart_toStartOf="@+id/movie_title_text"
                 app:layout_constraintTop_toBottomOf="@id/released_image"
-
+                android:contentDescription="@string/movie_item_language_cd"
                 app:layout_constraintWidth_percent="0.08"
                 app:srcCompat="@drawable/baseline_language_24" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/language_text"
+                style="@style/Theme.App_Light.Text_Appearance"
                 android:layout_width="@dimen/dimen_0"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_8"
                 android:layout_marginTop="@dimen/dimen_4"
-                android:fontFamily="sans-serif"
                 android:text="@{viewModel.languageMutableLiveData}"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
                 android:textSize="@dimen/dimen_text_16"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/language_image"
                 app:layout_constraintEnd_toEndOf="@id/movie_title_text"
                 app:layout_constraintStart_toEndOf="@+id/language_image"
@@ -136,22 +130,20 @@
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintStart_toStartOf="@+id/movie_title_text"
                 app:layout_constraintTop_toBottomOf="@id/language_image"
-
+                android:contentDescription="@string/movie_budget_cd"
                 app:layout_constraintWidth_percent="0.08"
                 app:srcCompat="@drawable/baseline_monetization_on_24" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/budget_text"
+                style="@style/Theme.App_Light.Text_Appearance"
                 android:layout_width="@dimen/dimen_0"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_8"
                 android:layout_marginTop="@dimen/dimen_4"
-                android:fontFamily="sans-serif"
                 android:text="@{viewModel.budgetMutableLiveData}"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
                 android:textSize="@dimen/dimen_text_16"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/budget_image"
                 app:layout_constraintEnd_toEndOf="@id/movie_title_text"
                 app:layout_constraintStart_toEndOf="@+id/budget_image"
@@ -179,18 +171,15 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/imdb_rating_text"
+                style="@style/Theme.App_Light.Text_Appearance"
                 android:layout_width="@dimen/dimen_0"
                 android:layout_height="@dimen/dimen_0"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:background="@color/yellow"
-                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="@{viewModel.imdbRatingMutableLiveData}"
-                android:textColor="@color/white"
                 android:textSize="@dimen/dimen_text_16"
-                android:textStyle="bold"
                 app:layout_constraintDimensionRatio="H, 10:3.5"
-
                 app:layout_constraintStart_toStartOf="@+id/movie_title_text"
                 app:layout_constraintTop_toBottomOf="@id/overview_text"
                 app:layout_constraintWidth_percent="0.44"
@@ -198,16 +187,14 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/popularity_text"
+                style="@style/Theme.App_Light.Text_Appearance"
                 android:layout_width="@dimen/dimen_0"
                 android:layout_height="@dimen/dimen_0"
                 android:layout_marginTop="@dimen/dimen_8"
                 android:background="@color/yellow"
-                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="@{viewModel.popularityMutableLiveData}"
-                android:textColor="@color/white"
                 android:textSize="@dimen/dimen_text_16"
-                android:textStyle="bold"
                 app:layout_constraintDimensionRatio="H, 10:3.5"
 
                 app:layout_constraintEnd_toEndOf="@+id/movie_title_text"
@@ -217,19 +204,17 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/genere_label_text"
+                style="@style/Theme.App_Light.Text_Appearance"
                 android:layout_width="@dimen/dimen_0"
                 android:layout_height="wrap_content"
                 android:text="@string/generes"
-                android:textColor="@color/white"
                 android:textSize="@dimen/dimen_text_24"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imdb_rating_text"
                 app:layout_constraintVertical_bias="0.025"
                 app:layout_constraintWidth_percent="0.9"
-
                 tools:text="Avenger End Games" />
 
             <androidx.recyclerview.widget.RecyclerView
