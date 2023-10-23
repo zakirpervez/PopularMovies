@@ -15,7 +15,9 @@ buildscript {
     dependencies {
         classpath("org.jlleitschuh.gradle:ktlint-gradle:11.6.1")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.4")
+        classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.18.1")
     }
 }
 
 apply(plugin = "org.jlleitschuh.gradle.ktlint")
+apply(plugin = "io.gitlab.arturbosch.detekt")

@@ -4,6 +4,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id("io.gitlab.arturbosch.detekt")
 }
 
 android {
@@ -107,3 +108,4 @@ dependencies {
 kapt {
     correctErrorTypes = true
 }
+
