@@ -86,7 +86,11 @@ class MainActivity : AppCompatActivity() {
 
             override fun onLosing(network: Network, maxMsToLive: Int) {
                 super.onLosing(network, maxMsToLive)
-                Toast.makeText(this@MainActivity, getString(R.string.slow_internet), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@MainActivity,
+                    getString(R.string.slow_internet),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             override fun onLost(network: Network) {
@@ -102,15 +106,5 @@ class MainActivity : AppCompatActivity() {
         sharedViewModel.loaderLiveData.observe(this) {
             activityMainBinding.loader.isVisible = it
         }
-
-        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                if (navController.currentDestination?.id == R.id.connectivityStatusFragment) {
-                    Toast.makeText(this@MainActivity, getString(R.string.connect_to_internet), Toast.LENGTH_SHORT).show()
-                } else {
-                    navController.popBackStack()
-                }
-            }
-        })
     }
 }
