@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.api.models.response.ResultsItem
 import com.husqvarna.popularmovies.databinding.FragmentMoviesBinding
@@ -87,6 +89,13 @@ class MoviesFragment : Fragment() {
             moviesViewModel.movies.collectLatest { pagedData ->
                 moviesPagingAdapter.submitData(pagedData)
             }
+        }
+
+        moviesPagingAdapter.addLoadStateListener { loadState ->
+            val isNoData =
+                loadState.source.refresh is LoadState.Error && moviesPagingAdapter.itemCount < 1
+            moviesBinding.moviesRecyclerView.isVisible = !isNoData
+            moviesBinding.noDataContainer.isVisible = isNoData
         }
     }
 

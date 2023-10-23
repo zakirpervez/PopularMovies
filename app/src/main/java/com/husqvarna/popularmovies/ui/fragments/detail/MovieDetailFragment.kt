@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -18,7 +18,7 @@ import com.husqvarna.popularmovies.ui.viewmodel.MovieDetailsViewModel
 import com.husqvarna.popularmovies.ui.viewmodel.SharedViewModel
 import com.husqvarna.popularmovies.util.loadImage
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.Locale
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -93,6 +93,7 @@ class MovieDetailFragment : Fragment() {
      */
     private fun observeData() {
         movieDetailsViewModel.moviesDetailsLiveData.observe(viewLifecycleOwner) {
+            handleVisibility(true)
             movieDetailsViewModel.movieTitleMutableLiveData.value = it?.title
             movieDetailsViewModel.movieTagLineMutableLiveData.value = it?.tagline
             movieDetailsViewModel.releaseDateMutableLiveData.value = it?.releaseDate
@@ -119,8 +120,13 @@ class MovieDetailFragment : Fragment() {
 
         movieDetailsViewModel.errorLiveData.observe(viewLifecycleOwner) {
             sharedViewModel.showLoader(false)
-            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+            handleVisibility(false)
         }
+    }
+
+    private fun handleVisibility(isVisible: Boolean) {
+        binding.scrollContainer.isVisible = isVisible
+        binding.noDataContainer.isVisible = !isVisible
     }
 
     override fun onDestroyView() {
