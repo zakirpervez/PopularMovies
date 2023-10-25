@@ -113,12 +113,12 @@ Splash Screen: Stay for 3 seconds and then navigate to Home Screen.<br>
 
 <li>
 Home Screen: Show list of movies. User can click any movie to check its details.<br>
-<img src="https://github.com/zakirpervez/PopularMovies/assets/16011892/318a3011-0cd1-4147-abe9-afc8bd0b0f85" width="360px" height="640px"/>
+<img src="https://github.com/zakirpervez/PopularMovies/assets/16011892/1ad6b4b0-786f-4deb-824c-fe993e2fe408" width="360px" height="640px"/>
 </li>
 
 <li>
 Movie Details Screen: Show movie details like title, release date, rating, overview etc.<br>
-<img src="https://github.com/zakirpervez/PopularMovies/assets/16011892/bda2e02e-a4ec-4e0e-be78-9c73a17fc65e" width="360px" height="640px"/>
+<img src="https://github.com/zakirpervez/PopularMovies/assets/16011892/5e314cff-e59b-415a-9515-481c32200612" width="360px" height="640px"/>
 </li>
 
 <li>
