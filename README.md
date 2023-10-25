@@ -108,29 +108,26 @@ This is application is built using a MVVM architecture.
 <ol>
 <li>
 Splash Screen: Stay for 3 seconds and then navigate to Home Screen.<br>
-![splash_screen](https://github.com/zakirpervez/PopularMovies/assets/16011892/38ba398c-e602-4667-b7b3-301bec6cdfb8)
-
+<img src="https://github.com/zakirpervez/PopularMovies/assets/16011892/38ba398c-e602-4667-b7b3-301bec6cdfb8" width="360px" height="640px"/>
 </li>
 
 <li>
 Home Screen: Show list of movies. User can click any movie to check its details.<br>
-  ![homescreen](https://github.com/zakirpervez/PopularMovies/assets/16011892/318a3011-0cd1-4147-abe9-afc8bd0b0f85)
+<img src="https://github.com/zakirpervez/PopularMovies/assets/16011892/318a3011-0cd1-4147-abe9-afc8bd0b0f85" width="360px" height="640px"/>
 </li>
 
 <li>
 Movie Details Screen: Show movie details like title, release date, rating, overview etc.<br>
-![details](https://github.com/zakirpervez/PopularMovies/assets/16011892/bda2e02e-a4ec-4e0e-be78-9c73a17fc65e)
+<img src="https://github.com/zakirpervez/PopularMovies/assets/16011892/bda2e02e-a4ec-4e0e-be78-9c73a17fc65e" width="360px" height="640px"/>
 </li>
 
 <li>
 No data screen: Display a message or take action when the API doesn't return any data or when an error occurs.<br>
-![no_data_screen](https://github.com/zakirpervez/PopularMovies/assets/16011892/08ff2a59-8ed5-452d-836f-275973cc7c1e)
-
+<img src="https://github.com/zakirpervez/PopularMovies/assets/16011892/08ff2a59-8ed5-452d-836f-275973cc7c1e" width="360px" height="640px"/>
 </li>
 
 <li>
 No internet connectivity screen: Display a message when there is no internet connectivity changes<br>
-![no_internet_connectivity_screen](https://github.com/zakirpervez/PopularMovies/assets/16011892/5a1c5533-1795-4701-b3c4-ebaa35bc7c92)
-
+<img src="https://github.com/zakirpervez/PopularMovies/assets/16011892/5a1c5533-1795-4701-b3c4-ebaa35bc7c92" width="360px" height="640px"/>
 </li>
 </ol>
