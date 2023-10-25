@@ -123,11 +123,13 @@ Movie Details Screen: Show movie details like title, release date, rating, overv
 
 <li>
 No data screen: Display a message or take action when the API doesn't return any data or when an error occurs.<br>
-<img src="../screen_shots/no_data_screen.png">
+![no_data_screen](https://github.com/zakirpervez/PopularMovies/assets/16011892/08ff2a59-8ed5-452d-836f-275973cc7c1e)
+
 </li>
 
 <li>
 No internet connectivity screen: Display a message when there is no internet connectivity changes<br>
-<img src="../screen_shots/no_internet_connectivity_screen.png">
+![no_internet_connectivity_screen](https://github.com/zakirpervez/PopularMovies/assets/16011892/5a1c5533-1795-4701-b3c4-ebaa35bc7c92)
+
 </li>
 </ol>
