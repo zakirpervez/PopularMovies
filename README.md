@@ -2,6 +2,7 @@
 <p>The PopularMovies app helps you find classic favourite movies and lets you see more information about them.</p>
 
 <h2>Getting Started</h2>
+<p>Discover the latest and greatest in the world of cinema with our Popular Movies app. Whether you're a film enthusiast or simply looking for your next movie night selection, this app is your one-stop destination for all things movies.</p>
 
 <h3>Software Stack:</h3>
 <ol>
@@ -113,12 +114,12 @@ Splash Screen: Stay for 3 seconds and then navigate to Home Screen.<br>
 
 <li>
 Home Screen: Show list of movies. User can click any movie to check its details.<br>
-
+  ![homescreen](https://github.com/zakirpervez/PopularMovies/assets/16011892/318a3011-0cd1-4147-abe9-afc8bd0b0f85)
 </li>
 
 <li>
 Movie Details Screen: Show movie details like title, release date, rating, overview etc.<br>
-
+![details](https://github.com/zakirpervez/PopularMovies/assets/16011892/bda2e02e-a4ec-4e0e-be78-9c73a17fc65e)
 </li>
 
 <li>
