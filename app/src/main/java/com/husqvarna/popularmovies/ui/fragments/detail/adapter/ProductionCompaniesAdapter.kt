@@ -9,7 +9,7 @@ import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.api.models.response.ProductionCompaniesItem
 import com.husqvarna.popularmovies.databinding.ProductionHousesItemBinding
 import com.husqvarna.popularmovies.util.loadImage
-import java.util.*
+import java.util.Locale
 
 /**
  * Adapter class for the production companies list.

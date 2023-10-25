@@ -7,12 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.R
-import com.husqvarna.popularmovies.api.models.response.ProductionCompaniesItem
 import com.husqvarna.popularmovies.api.models.response.ResultsItem
 import com.husqvarna.popularmovies.databinding.MovieItemBinding
-import com.husqvarna.popularmovies.databinding.ProductionHousesItemBinding
 import com.husqvarna.popularmovies.util.loadImage
-import java.util.*
+import java.util.Locale
 
 class MoviesPagingAdapter :
     PagingDataAdapter<ResultsItem, MoviesPagingAdapter.MoviesViewHolder>(MOVIE_DIFF_CALLBACK) {

@@ -11,7 +11,7 @@ import timber.log.Timber
 class PopularMoviesApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        // Initialize the timber library.
+        // Planting timber debug tree
         Timber.plant(Timber.DebugTree())
     }
 }

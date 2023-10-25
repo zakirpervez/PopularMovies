@@ -3,6 +3,9 @@ package com.husqvarna.popularmovies.api.source
 import com.husqvarna.popularmovies.api.ApiService
 import com.husqvarna.popularmovies.api.base.SafeApi
 import javax.inject.Inject
+import com.husqvarna.popularmovies.api.models.ApiResult
+import com.husqvarna.popularmovies.api.models.response.PopularMoviesResponse
+import com.husqvarna.popularmovies.api.models.response.MovieDetailsResponse
 
 /**
  * Remote/API data source for fetching data from API.

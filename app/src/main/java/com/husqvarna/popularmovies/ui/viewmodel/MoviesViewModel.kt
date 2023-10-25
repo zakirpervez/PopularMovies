@@ -15,7 +15,7 @@ class MoviesViewModel @Inject constructor(private val repository: Repository) : 
         Pager(config = PagingConfig(pageSize = 20, prefetchDistance = 2), pagingSourceFactory = {
             MoviesDataSource(repository,object : MoviesDataSource.ApiLoadingStateListener {
                 override fun loadingState(isLoading: Boolean) {
-                    _loaderMutableLiveData.postValue(isLoading)
+                    loaderMutableLiveData.postValue(isLoading)
                 }
             })
         }).flow.cachedIn(viewModelScope)

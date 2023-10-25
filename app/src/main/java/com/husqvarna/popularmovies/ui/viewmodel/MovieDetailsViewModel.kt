@@ -17,8 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(private val repository: Repository) :
     BaseViewModel() {
-    private val _moviesDetailsLiveData = MutableLiveData<MovieDetailsResponse?>()
-    val moviesDetailsLiveData: LiveData<MovieDetailsResponse?> = _moviesDetailsLiveData
+    private val moviesDetailsMutableLiveData = MutableLiveData<MovieDetailsResponse?>()
+    val moviesDetailsLiveData: LiveData<MovieDetailsResponse?> = moviesDetailsMutableLiveData
     val movieTitleMutableLiveData = MutableLiveData<String>()
     val movieTagLineMutableLiveData = MutableLiveData<String>()
     val releaseDateMutableLiveData = MutableLiveData<String>()
@@ -30,16 +30,16 @@ class MovieDetailsViewModel @Inject constructor(private val repository: Reposito
 
     /**
      * Fetch the movie details from the server.
-     * @see [repository.fetchMovieDetails]
+     * @see [Repository.fetchMovieDetails]
      */
     fun fetchMovieDetails(movieId: Int) = viewModelScope.launch(Dispatchers.IO) {
         when (val response = repository.fetchMovieDetails(movieId)) {
             is ApiResult.Success<MovieDetailsResponse> -> {
-                _moviesDetailsLiveData.postValue(response.data)
+                moviesDetailsMutableLiveData.postValue(response.data)
             }
 
             is ApiResult.Error -> {
-                _errorLiveData.postValue(response.errorMessage)
+                errorMutableLiveData.postValue(response.errorMessage)
             }
         }
     }

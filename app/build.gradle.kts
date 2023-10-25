@@ -104,6 +104,8 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     androidTestImplementation("androidx.navigation:navigation-testing:2.7.4")
+
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.12")
 }
 kapt {
     correctErrorTypes = true

@@ -1,6 +1,5 @@
 package com.husqvarna.popularmovies.ui.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -14,6 +13,6 @@ class SharedViewModel @Inject constructor() : BaseViewModel() {
      * @param isLoading true if loader is to be shown else false.
      */
     fun showLoader(isLoading: Boolean) {
-        _loaderMutableLiveData.postValue(isLoading)
+        loaderMutableLiveData.postValue(isLoading)
     }
 }

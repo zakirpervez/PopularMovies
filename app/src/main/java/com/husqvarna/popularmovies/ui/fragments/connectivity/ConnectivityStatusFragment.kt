@@ -4,20 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.husqvarna.popularmovies.R
+import com.husqvarna.popularmovies.databinding.FragmentConnectivityStatusBinding
 
 /**
  * Connectivity status screen.
  */
 class ConnectivityStatusFragment : Fragment() {
+    private var _binding: FragmentConnectivityStatusBinding? = null
+    private val binding by lazy { _binding!! }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_connectivity_status, container, false)
+        _binding = FragmentConnectivityStatusBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

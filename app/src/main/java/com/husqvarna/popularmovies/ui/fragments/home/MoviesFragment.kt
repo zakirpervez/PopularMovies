@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -18,6 +17,7 @@ import com.husqvarna.popularmovies.databinding.FragmentMoviesBinding
 import com.husqvarna.popularmovies.ui.fragments.home.paging.MoviesPagingAdapter
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
 import com.husqvarna.popularmovies.ui.viewmodel.SharedViewModel
+import com.husqvarna.popularmovies.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -65,7 +65,7 @@ class MoviesFragment : Fragment() {
 
         moviesViewModel.errorLiveData.observe(viewLifecycleOwner) {
             sharedViewModel.showLoader(false)
-            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+            requireContext().showToast(it)
         }
     }
 

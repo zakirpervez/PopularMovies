@@ -1,5 +1,7 @@
 package com.husqvarna.popularmovies.util
 
+import android.content.Context
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -18,4 +20,16 @@ fun ShapeableImageView.loadImage(url: String) {
         .load(url)
         .apply(glideRequestOptions)
         .into(this)
+}
+
+fun Context.showToast(message: String, isLong: Boolean = true) {
+    Toast.makeText(
+        this,
+        message,
+        if (isLong) {
+            Toast.LENGTH_LONG
+        } else {
+            Toast.LENGTH_SHORT
+        }
+    ).show()
 }

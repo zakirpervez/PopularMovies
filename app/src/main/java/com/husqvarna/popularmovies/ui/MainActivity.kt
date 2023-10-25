@@ -7,8 +7,6 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -20,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.databinding.ActivityMainBinding
 import com.husqvarna.popularmovies.ui.viewmodel.SharedViewModel
+import com.husqvarna.popularmovies.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -66,6 +65,9 @@ class MainActivity : AppCompatActivity() {
         connectivityManager.unregisterNetworkCallback(networkCallback)
     }
 
+    /**
+     * Monitor connectivity status.
+     */
     private fun initConnectivityManager() {
         connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
@@ -86,11 +88,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onLosing(network: Network, maxMsToLive: Int) {
                 super.onLosing(network, maxMsToLive)
-                Toast.makeText(
-                    this@MainActivity,
-                    getString(R.string.slow_internet),
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast(getString(R.string.slow_internet))
             }
 
             override fun onLost(network: Network) {
@@ -102,6 +100,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Observe data.
+     */
     private fun observeData(activityMainBinding: ActivityMainBinding) {
         sharedViewModel.loaderLiveData.observe(this) {
             activityMainBinding.loader.isVisible = it

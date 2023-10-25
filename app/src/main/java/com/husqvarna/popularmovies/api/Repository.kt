@@ -2,6 +2,9 @@ package com.husqvarna.popularmovies.api
 
 import com.husqvarna.popularmovies.api.source.ApiDataSource
 import javax.inject.Inject
+import com.husqvarna.popularmovies.api.models.ApiResult
+import com.husqvarna.popularmovies.api.models.response.PopularMoviesResponse
+import com.husqvarna.popularmovies.api.models.response.MovieDetailsResponse
 
 /**
  * Mediator class to connect the data sources with view-models.
