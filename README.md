@@ -107,17 +107,18 @@ This is application is built using a MVVM architecture.
 <ol>
 <li>
 Splash Screen: Stay for 3 seconds and then navigate to Home Screen.<br>
-<img src="../screen_shots/splash_screen.png">
+![splash_screen](https://github.com/zakirpervez/PopularMovies/assets/16011892/38ba398c-e602-4667-b7b3-301bec6cdfb8)
+
 </li>
 
 <li>
 Home Screen: Show list of movies. User can click any movie to check its details.<br>
-<img src="../screen_shots/home_screen.png">
+
 </li>
 
 <li>
 Movie Details Screen: Show movie details like title, release date, rating, overview etc.<br>
-<img src="../screen_shots/details_screen.png">
+
 </li>
 
 <li>
