@@ -10,7 +10,7 @@
 <li>XML</li>
 <li>Constraint/Motion Layout</li>
 <li>Jetpack Navigation Component</li>
-<li>Jetpack Pagging</li>
+<li>Jetpack Paging</li>
 <li>Android Architecture Components</li>
 <li>Glide</li>
 <li>Retrofit</li>
@@ -22,74 +22,111 @@
 </ol>
 
 <h3>Git branching strategy</h3>
+<p>A Git branching strategy is a set of rules and guidelines for managing and organizing branches in a Git repository. 
+It helps teams collaborate, maintain code quality, and streamline the development process. 
+There are several branching strategies like Truncate based development, Git Flow etc.</p>
+<p>In this project I am going to use the truncate based development strategy as I am a single in this project due to which it make more sense to use it.</p>
+<ol>
+<li>`main` - Main branch, always stable and ready to deploy. </li>
+<li>All the feature branches should be created from master branch. </li>
+<li>All the feature branches should be merged into master branch.</li>
+</ol>
 
-1. `main` - Main branch, always stable and ready to deploy. 
-2. All the feature branches should be created from master branch. 
-3. All the feature branches should be merged into master branch.
-
-Note: As I am single developer, I am not creating any feature branches. I am directly pushing the code to master branch.
+*Note: As I am single developer, I am not creating any feature branches. I am directly pushing the code to master branch.*
 
 <h3>Commit guidelines</h3>
 <p>Commit should always be make in following format</p>
 <p>type(scope): [commit-details-message]-[ticket/issue_number]</p>
 
 <p>type: Type should be represent the nature of commit. It can be one of the following.</p>
-1. feat: A new code which is return for the feature.
-2. fix: A bug fix.
-3. refactor: A modification inside the existing code.
-4. docs: Documentation only changes.
-5. release: Release of new version.
-6. test: Adding or updating tests.
-7. chore: Updating build tasks, package manager configs, etc; no production code change.
+<ol>
+<li>feat: A new code which is return for the feature.</li>
+<li>fix: A bug fix.</li>
+<li>refactor: A modification inside the existing code.</li>
+<li>docs: Documentation only changes.</li>
+<li>release: Release of new version.</li>
+<li>test: Adding or updating tests.</li>
+<li>chore: Updating build tasks, package manager configs, etc; no production code change.</li>
+</ol>
 
 <p>scope: Scope indicates the module, component, or part of the project the commit affects. It can be one of the following.</p>
-1. Component
-2. BugFix 
-3. Module
-4. App
-5. Api
+<ol>
+<li>Component</li>
+<li>BugFix </li>
+<li>Module</li>
+<li>App</li>
+<li>Api</li>
+</ol>
 
 <p>commit-details-message: A short, concise summary of the changes.</p>
 
 <p>ticket/issue_number: Represent JIRA/Github/Gitlab ticket/issue number.</p>
 
-Note: As I don't have any JIRA/Github/Gitlab ticket/issue number, I am assuming a ticket no TN:10000 and adding it in my commits.
+* Note: 
+<ol>
+<li>There is no git pre-hooks added.</li>
+<li>As I don't have any JIRA/Github/Gitlab ticket/issue number, I am assuming a ticket no TN:10000 and adding it in my commits.</li>
+<li>No CI/CD integration [Gitlab/Github/Bitrise/Bamboo/Fastlane etc would be good candidates]</li>
+</ol>
+*
 
 <h3>Architecture Used</h3>
 This is application is built using a MVVM architecture.
 
 ![mvvm_architecture](https://github.com/zakirpervez/PopularMovies/assets/16011892/6a215e81-9461-4b6b-ba4f-022c63e5c1ce)
 
-
 <h3>Testing</h3>
-1. Unit Testing: Unit testing is done using Junit4 and mockK.
-2. Instrumentation Testing: No Instrument testing is done [Note: Please let me know if you want me to add the instrument test cases.]
+<ol>
+<li>Unit Testing: Unit test cases are added.</li>
+<li>Instrumentation Testing: No instrumentation test cases are added.</li>
+</ol>
 
-<h3>Testing</h3>
-<p>As of now I am not proguarding/dexguarding the apk as well as not providing in api key and network security.</p>
+<h3>Security</h3>
+<ol>
+<li>Network security config added</li>
+<li>Proguard/Dexguard is not added</li>
+</ol>
+*Note: Not adding the proguard/dexguard.*
 
-<h3>Code analysis</h3>
-<p>Integrated the Ktlint tool for code analysis.</p>
+<h3>Interceptor/CodeAnalysis/Logging/Memory Detection Tools</h3>
+<p>Integrated following tools inside the app</p>
+<ol>
+<li><b>lint:</b><p>Lint is a static code analysis tool provided by Android Studio. It helps identify issues in Android project code that may cause runtime errors, security vulnerabilities, performance problems, or other code quality problems. Lint performs a wide range of checks, including identifying unused resources, detecting layout performance issues, highlighting potential security vulnerabilities, and more. It provides suggestions and warnings to help developers write better code and follow best practices.</p></li>
+<li><b>kt-lint:</b><p>KtLint is a Kotlin-specific code style checker and formatter. It enforces a consistent coding style in Kotlin projects by defining coding rules and then applying those rules to the source code. KtLint helps maintain a uniform and readable codebase by automatically formatting code and highlighting deviations from the defined style rules. It is often used in conjunction with Kotlin projects to ensure code consistency and adherence to a project's coding standards.</p></li>
+<li><b>detekt:</b><p> Detekt is a static code analysis tool for Kotlin that helps developers identify issues and enforce coding standards in Kotlin codebases. Similar to Lint for Android, Detekt analyzes Kotlin code for various issues, such as complexity, code smells, potential bugs, and anti-patterns. It provides a set of configurable rules to detect issues and can be customized to match the coding standards and guidelines of a project.</p></li>
+<li><b>leak canary:</b>
+<p>LeakCanary is a memory leak detection library for Android applications. It helps developers identify and diagnose memory leaks in their apps. Memory leaks can lead to increased memory consumption and application crashes, so LeakCanary is a valuable tool for finding and fixing such issues. It automatically detects and reports memory leaks, providing detailed information about the leaking objects and their references, making it easier to address the problem.</p>
+<img src="/Users/Zakir.Mohammad/Documents/personal/projects/popularmovies/PopularMovies/screen_shots/leak_canary_sample_sreen.png">
+</li>
+<li><b>Timber:</b><p>Timber is a popular logging library for Android applications. It provides a simple and efficient way to log messages and debug information in your Android app. Timber offers several benefits over the standard Android logging methods</p></li>
+</ol>
+
+*Note : No other network interceptor and crashing tools are added [Chuck/Stetho/Crashlytics/Sentry]*
 
 <h3>App Screens</h3>
-1. Splash Screen: Stay for 3 seconds and then navigate to Home Screen.
-![Splash_screen](https://github.com/zakirpervez/PopularMovies/assets/16011892/ecb36326-03c1-4fee-8a3f-3512eaa8b898)
+<ol>
+<li>
+Splash Screen: Stay for 3 seconds and then navigate to Home Screen.<br>
+<img src="../screen_shots/splash_screen.png">
+</li>
 
-2. Home Screen: Show list of movies. User can click any movie to check its details.
-![Screenshot_1697441042](https://github.com/zakirpervez/PopularMovies/assets/16011892/5b16c41d-c439-418e-8cfb-517735f10272)
+<li>
+Home Screen: Show list of movies. User can click any movie to check its details.<br>
+<img src="../screen_shots/home_screen.png">
+</li>
 
-3. Movie Details Screen: Show movie details like title, release date, rating, overview etc.
-![Screenshot_1697486049](https://github.com/zakirpervez/PopularMovies/assets/16011892/b81b96b6-05e1-49b6-801f-4d6b9b2aad9a)
+<li>
+Movie Details Screen: Show movie details like title, release date, rating, overview etc.<br>
+<img src="../screen_shots/details_screen.png">
+</li>
 
-<h3>Pending Work</h3>
-<ul>
-<li>No data screen handling</li>
-<li>Crashlytics, LeakCanary, Detekt integrations</li>
-<li>Code optimization and profiling</li>
-<li>Instrumentation test cases</li>
-</ul>
+<li>
+No data screen: Display a message or take action when the API doesn't return any data or when an error occurs.<br>
+<img src="../screen_shots/no_data_screen.png">
+</li>
 
-
-
-
-
+<li>
+No internet connectivity screen: Display a message when there is no internet connectivity changes<br>
+<img src="../screen_shots/no_internet_connectivity_screen.png">
+</li>
+</ol>
