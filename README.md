@@ -10,6 +10,7 @@
 <li>Kotlin</li>
 <li>XML</li>
 <li>Constraint/Motion Layout</li>
+<li>Compose</li>
 <li>Jetpack Navigation Component</li>
 <li>Jetpack Paging</li>
 <li>Android Architecture Components</li>
