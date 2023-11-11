@@ -7,7 +7,7 @@ import androidx.paging.PagingSource
 import com.husqvarna.popularmovies.MockDataHelper
 import com.husqvarna.popularmovies.api.Repository
 import com.husqvarna.popularmovies.api.models.ApiResult
-import com.husqvarna.popularmovies.api.models.response.ResultsItem
+import com.husqvarna.popularmovies.api.models.response.Movie
 import com.husqvarna.popularmovies.ui.fragments.home.paging.MoviesDataSource
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -57,7 +57,7 @@ class MoviesViewModelTest {
         coEvery { repository.fetchPopularMovies(1) } returns ApiResult.Success(popularMoviesResponse)
         coEvery { pagingSource.load(any()) } returns PagingSource.LoadResult.Page(data = results, prevKey = null, nextKey = 2)
 
-        val moviesFlow: Flow<PagingData<ResultsItem>> = viewModel.movies
+        val moviesFlow: Flow<PagingData<Movie>> = viewModel.movies
         assertNotNull(moviesFlow)
     }
 }

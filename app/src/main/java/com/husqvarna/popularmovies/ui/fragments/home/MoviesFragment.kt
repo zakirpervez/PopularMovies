@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.husqvarna.popularmovies.R
-import com.husqvarna.popularmovies.api.models.response.ResultsItem
+import com.husqvarna.popularmovies.api.models.response.Movie
 import com.husqvarna.popularmovies.databinding.FragmentMoviesBinding
 import com.husqvarna.popularmovies.ui.fragments.home.paging.MoviesPagingAdapter
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
@@ -22,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 
 /**
  * [MoviesFragment] represent the movies list screen.
@@ -79,7 +78,7 @@ class MoviesFragment : Fragment() {
 
             moviesPagingAdapter.setOnMovieItemClickListener(object :
                 MoviesPagingAdapter.OnMovieItemClickListener {
-                override fun onMovieClick(movie: ResultsItem) {
+                override fun onMovieClick(movie: Movie) {
                     navigateToDetails(movie)
                 }
             })
@@ -101,9 +100,9 @@ class MoviesFragment : Fragment() {
 
     /**
      * Navigate to the movie details screen.
-     * @param movie The [ResultsItem] movie item.
+     * @param movie The [Movie] movie item.
      */
-    private fun navigateToDetails(movie: ResultsItem) {
+    private fun navigateToDetails(movie: Movie) {
         movie.id?.let {
             // Added bundle due to bug present in android giraffe where it won't recognize the safe args inside navigation graph.
             val args = Bundle()

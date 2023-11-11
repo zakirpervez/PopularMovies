@@ -1,6 +1,5 @@
 package com.husqvarna.popularmovies.ui.composables.screen
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,82 +18,90 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemKey
+import coil.compose.AsyncImage
+import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.R
-import com.husqvarna.popularmovies.api.models.response.ResultsItem
+import com.husqvarna.popularmovies.api.models.response.Movie
 import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
 import com.husqvarna.popularmovies.ui.composables.theme.Purple200
+import com.husqvarna.popularmovies.ui.composables.theme.Purple40
+import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
 
 @Composable
-fun MoviesScreen(onNavigate: (id: Int) -> Unit) {
-    val movies = listOf(
-        ResultsItem(
-            title = "Movie 1", id = 1, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-        ResultsItem(
-            title = "Movie 2", id = 2, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-        ResultsItem(
-            title = "Movie 3", id = 3, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-        ResultsItem(
-            title = "Movie 4", id = 4, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-        ResultsItem(
-            title = "Movie 5", id = 5, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-        ResultsItem(
-            title = "Movie 6", id = 6, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-        ResultsItem(
-            title = "Movie 7", id = 7, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-        ResultsItem(
-            title = "Movie 8", id = 8, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-        ResultsItem(
-            title = "Movie 9", id = 9, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-        ResultsItem(
-            title = "Movie 10", id = 10, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-        ResultsItem(
-            title = "Movie 11", id = 11, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-        ResultsItem(
-            title = "Movie 12", id = 12, originalLanguage = "English", releaseDate = "16/10/2021"
-        ),
-    )
+fun MoviesScreen(moviesViewModel: MoviesViewModel, onNavigate: (id: Int) -> Unit) {
+
+    val movies = moviesViewModel.movies.collectAsLazyPagingItems()
 
     Surface(
         modifier = Modifier
-            .background(color = Purple200)
             .fillMaxWidth()
+            .background(color = Purple200)
     ) {
+        Column(
+            modifier = Modifier.fillMaxSize().background(color = Purple200),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            if (movies.loadState.refresh == LoadState.Loading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Purple200),
+                    contentAlignment = Alignment.Center,
+                ) {
+                val strokeWidth = 4.dp
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .drawBehind {
+                            this.drawCircle(
+                                Purple40,
+                                radius = size.width / 2 - strokeWidth.toPx() / 2,
+                                style = Stroke(strokeWidth.toPx())
+                            )
+                        }
+                        .background(color = Purple200)
+                        .padding(8.dp),
+                    color = Color.White,
+                    strokeWidth = strokeWidth,
+                )
+            }
+        }
+
         LazyColumn(modifier = Modifier.background(color = Purple200)) {
-            items(movies.size) { index ->
-                val movie = movies[index]
+            items(
+                count = movies.itemCount,
+                key = movies.itemKey { it.id ?: 0 }
+            ) { index ->
+                val movie = movies[index]!!
                 MovieItem(movie = movie, onNavigate = onNavigate)
             }
         }
     }
 }
+}
 
 @Composable
-fun MovieItem(movie: ResultsItem, onNavigate: (id: Int) -> Unit) {
+fun MovieItem(movie: Movie, onNavigate: (id: Int) -> Unit) {
     Card(
         modifier = Modifier
             .padding(top = 8.dp, bottom = 8.dp)
@@ -115,14 +122,6 @@ fun MovieItem(movie: ResultsItem, onNavigate: (id: Int) -> Unit) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun MovieItemPreview() {
-    MovieItem(movie = ResultsItem(
-        title = "Avenger End Game", releaseDate = "16/10/2023", originalLanguage = "English"
-    ), onNavigate = {})
-}
-
 @Composable
 fun DullBlackContainer() {
     Box(
@@ -138,27 +137,29 @@ fun DullBlackContainer() {
 }
 
 @Composable
-fun MovieContent(movie: ResultsItem) {
+fun MovieContent(movie: Movie) {
     Row(
         modifier = Modifier
             .padding(start = 32.dp, end = 16.dp)
             .fillMaxWidth(),
     ) {
-        Image(
-            painter = painterResource(
-                id = R.drawable.husqvarna_logo_vector_white
-            ),
+        val posterUrl = "${BuildConfig.IMAGES_URL}${movie.posterPath}"
+        AsyncImage(
+            model = posterUrl,
+            placeholder = painterResource(id = R.drawable.baseline_image_24),
+            error = painterResource(id = R.drawable.baseline_broken_image_24),
             contentDescription = "Husqvarna Logo",
             modifier = Modifier
-                .background(color = Color.Gray)
-                .aspectRatio(10f / 20f, true)
-                .scale(1f)
+                .background(color = DullBlack)
+                .aspectRatio(10f / 17f, true)
+                .scale(1f),
+            contentScale = ContentScale.FillHeight,
         )
 
         Spacer(
             modifier = Modifier
                 .fillMaxHeight()
-                .width(8.dp)
+                .width(12.dp)
                 .background(Color.Transparent)
         )
 
@@ -175,8 +176,14 @@ fun MovieContent(movie: ResultsItem) {
                 textDecoration = TextDecoration.Underline,
                 fontSize = 16.sp
             )
-            MovieSubItem(title = movie.releaseDate ?: "-", drawableId = R.drawable.baseline_calendar_month_24)
-            MovieSubItem(title = movie.originalLanguage ?: "-", drawableId = R.drawable.baseline_language_24)
+            MovieSubItem(
+                title = movie.releaseDate ?: "-",
+                drawableId = R.drawable.baseline_calendar_month_24
+            )
+            MovieSubItem(
+                title = movie.originalLanguage ?: "-",
+                drawableId = R.drawable.baseline_language_24
+            )
         }
     }
 }
@@ -189,7 +196,7 @@ fun MovieSubItem(title: String, drawableId: Int) {
             .height(8.dp)
             .background(Color.Transparent)
     )
-    Row (
+    Row(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
@@ -212,3 +219,10 @@ fun MovieSubItem(title: String, drawableId: Int) {
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun MovieItemPreview() {
+    MovieItem(movie = Movie(
+        title = "Avenger End Game", releaseDate = "16/10/2023", originalLanguage = "English"
+    ), onNavigate = {})
+}

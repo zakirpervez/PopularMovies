@@ -1,16 +1,18 @@
 package com.husqvarna.popularmovies.ui.composables.screen
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
 
 @Composable
 fun AppRoutes() {
     val navController = rememberNavController()
-
+    val moviesViewModel = hiltViewModel<MoviesViewModel>()
     NavHost(navController = navController, startDestination = "splash_screen", builder = {
         composable(route = "splash_screen"){
             SplashScreen {
@@ -19,7 +21,7 @@ fun AppRoutes() {
             }
         }
         composable(route = "movies_screen") {
-            MoviesScreen {
+            MoviesScreen(moviesViewModel = moviesViewModel) {
                 navController.navigate("movie_details_screen/${it}")
             }
         }

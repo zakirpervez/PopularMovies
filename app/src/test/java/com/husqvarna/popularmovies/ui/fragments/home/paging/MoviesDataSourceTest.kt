@@ -7,7 +7,7 @@ import com.husqvarna.popularmovies.api.Repository
 import com.husqvarna.popularmovies.api.base.ERROR_UNKNOWN
 import com.husqvarna.popularmovies.api.models.ApiResult
 import com.husqvarna.popularmovies.api.models.response.PopularMoviesResponse
-import com.husqvarna.popularmovies.api.models.response.ResultsItem
+import com.husqvarna.popularmovies.api.models.response.Movie
 import io.mockk.MockKAnnotations
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
@@ -67,7 +67,7 @@ class MoviesDataSourceTest {
 
     @Test
     fun `getRefreshKey returns anchorPosition from PagingState`() {
-        val pagingState = mockk<PagingState<Int, ResultsItem>>()
+        val pagingState = mockk<PagingState<Int, Movie>>()
         every { pagingState.anchorPosition } returns 10
         val refreshKey = moviesDataSource.getRefreshKey(pagingState)
         assertEquals(10, refreshKey)
