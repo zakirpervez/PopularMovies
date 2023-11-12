@@ -21,7 +21,7 @@ fun MovieItemContainer(movie: Movie, onNavigate: (id: Int) -> Unit) {
             .fillMaxWidth()
             .clickable { onNavigate(movie.id ?: 0) }, contentAlignment = Alignment.Center
     ) {
-        DullBlackContainer()
+        RoundedRectContainer()
         MovieContentContainer(movie = movie)
     }
 }

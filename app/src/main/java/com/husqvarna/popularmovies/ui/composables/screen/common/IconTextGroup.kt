@@ -37,7 +37,7 @@ fun IconTextGroup(title: String, drawableId: Int) {
         Text(
             text = title,
             color = Color.White,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Bold,
             fontSize = 12.sp
         )
     }

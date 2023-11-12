@@ -13,3 +13,5 @@ val Pink40 = Color(0xFF7D5260)
 val Purple200 = Color(0xFFBB86FC)
 
 val DullBlack = Color(0x8A000000)
+
+val TurmericYellow = Color(0xFFFFC107)

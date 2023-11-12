@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
 
 @Composable
-fun DullBlackContainer() {
+fun RoundedRectContainer() {
     Box(
         modifier = Modifier
             .padding(start = 8.dp, end = 8.dp)

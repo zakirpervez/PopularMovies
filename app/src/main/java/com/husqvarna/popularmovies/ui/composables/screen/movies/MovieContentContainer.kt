@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.api.models.response.Movie
+import com.husqvarna.popularmovies.ui.composables.screen.common.Heading
 import com.husqvarna.popularmovies.ui.composables.screen.common.HorizontalSpacer
 import com.husqvarna.popularmovies.ui.composables.screen.common.IconTextGroup
 import com.husqvarna.popularmovies.ui.composables.screen.common.MoviePosterImage
@@ -35,10 +36,12 @@ fun MovieContentContainer(movie: Movie) {
             .fillMaxWidth(),
     ) {
         val posterUrl = "${BuildConfig.IMAGES_URL}${movie.posterPath}"
-        MoviePosterImage(url = posterUrl, modifier = Modifier
-            .background(color = DullBlack)
-            .aspectRatio(10f / 17f, true)
-            .scale(1f))
+        MoviePosterImage(
+            url = posterUrl, modifier = Modifier
+                .background(color = DullBlack)
+                .aspectRatio(10f / 17f, true)
+                .scale(1f)
+        )
 
         VerticalSpacer(width = 12.dp)
         Column(
@@ -47,13 +50,7 @@ fun MovieContentContainer(movie: Movie) {
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.Center,
         ) {
-            Text(
-                text = movie.title ?: "",
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                textDecoration = TextDecoration.Underline,
-                fontSize = 16.sp
-            )
+            Heading(text = movie.title ?: "-")
             HorizontalSpacer(height = 8.dp)
             IconTextGroup(
                 title = movie.releaseDate ?: "-",
@@ -71,7 +68,9 @@ fun MovieContentContainer(movie: Movie) {
 @Preview
 @Composable
 fun MovieContentContainerPreview() {
-    MovieContentContainer(movie = Movie(
-        title = "Avenger End Game", releaseDate = "16/10/2023", originalLanguage = "English"
-    ))
+    MovieContentContainer(
+        movie = Movie(
+            title = "Avenger End Game", releaseDate = "16/10/2023", originalLanguage = "English"
+        )
+    )
 }
