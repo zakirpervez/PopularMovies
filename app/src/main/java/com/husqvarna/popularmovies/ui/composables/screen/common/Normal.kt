@@ -15,7 +15,6 @@ fun Normal(
     fontSize: TextUnit = 12.sp,
     fontWeight: FontWeight = FontWeight.Normal,
     fontStyle: FontStyle = FontStyle.Normal,
-    maxLine: Int = 15,
 ) {
     Text(
         text = text,
@@ -23,7 +22,6 @@ fun Normal(
         fontWeight = fontWeight,
         fontSize = fontSize,
         fontStyle = fontStyle,
-        maxLines = maxLine
     )
 }
 

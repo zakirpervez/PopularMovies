@@ -20,7 +20,7 @@ fun MoviePosterImage(url: String, modifier: Modifier) {
         error = painterResource(id = R.drawable.baseline_broken_image_24),
         contentDescription = "Husqvarna Logo",
         modifier = modifier,
-        contentScale = ContentScale.FillHeight,
+        contentScale = ContentScale.FillBounds,
     )
 }
 

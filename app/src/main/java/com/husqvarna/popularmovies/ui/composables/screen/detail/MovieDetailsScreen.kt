@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
@@ -29,7 +30,15 @@ import java.util.*
 
 @Composable
 fun MovieDetailsScreen(movieId: Int, movieDetailsViewModel: MovieDetailsViewModel) {
+    LazyColumn {
+        item {
+            MovieDetails(movieId = movieId, movieDetailsViewModel = movieDetailsViewModel)
+        }
+    }
+}
 
+@Composable
+fun MovieDetails(movieId: Int, movieDetailsViewModel: MovieDetailsViewModel) {
     val movieDetailsState = movieDetailsViewModel.moviesDetailsLiveData.observeAsState(null)
 
     LaunchedEffect(key1 = Unit, block = {

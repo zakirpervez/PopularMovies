@@ -1,5 +1,6 @@
 package com.husqvarna.popularmovies.ui.composables.screen.detail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -21,6 +23,7 @@ import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.api.models.response.ProductionCompaniesItem
 import com.husqvarna.popularmovies.ui.composables.screen.common.MoviePosterImage
 import com.husqvarna.popularmovies.ui.composables.screen.common.Normal
+import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
 import java.util.*
 
@@ -43,37 +46,29 @@ fun ProductionHousesListView(companies: List<ProductionCompaniesItem?>) {
 
 @Composable
 fun ProductionHousesItemView(company: ProductionCompaniesItem) {
-    Card(
+    Row(
         modifier = Modifier
-            .width(128.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = TurmericYellow
-        ),
+            .fillMaxWidth()
+            .background(color = TurmericYellow)
+            .padding(4.dp)
     ) {
-        Row(
+        MoviePosterImage(
+            url = "${BuildConfig.IMAGES_URL}/${company.logoPath}",
             modifier = Modifier
+                .padding(start = 4.dp, top = 8.dp, bottom = 8.dp, end = 4.dp)
+                .aspectRatio(10f / 11f)
+        )
+        val country = Locale("", company.originCountry ?: "IN").displayCountry
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
                 .fillMaxWidth()
+                .padding(start = 4.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.Start
         ) {
-            MoviePosterImage(
-                url = "${BuildConfig.IMAGES_URL}/${company.logoPath}",
-                modifier = Modifier
-                    .padding(start = 4.dp, top = 8.dp, bottom = 8.dp, end = 4.dp)
-                    .aspectRatio(10f / 11f)
-            )
-            Column(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth()
-                    .padding(start = 4.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.Start
-            ) {
-                Normal(text = company.name ?: "", maxLine = 1)
-                Normal(
-                    text = Locale(company.originCountry ?: "en").displayCountry,
-                    maxLine = 1
-                )
-            }
+            Normal(text = company.name ?: "")
+            Normal(text = country)
         }
     }
 }
