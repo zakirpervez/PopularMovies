@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -16,25 +15,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.husqvarna.popularmovies.api.models.response.GenresItem
 import com.husqvarna.popularmovies.ui.composables.screen.common.Normal
 import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
 
 @Composable
-fun RoundedChipsListView(chips: List<String>) {
+fun GeneresListView(genereList: List<GenresItem?>) {
     LazyRow(
         modifier = Modifier.height(48.dp)
     ) {
         items(
-            count = chips.size,
+            count = genereList.size,
             key = { index -> index }
         ) { item ->
-            RoundedChip(text = chips[item])
+            GenereItemView(genresItem = genereList[item]!!)
         }
     }
 }
 
 @Composable
-fun RoundedChip(text: String) {
+fun GenereItemView(genresItem: GenresItem) {
     Card(
         modifier = Modifier
             .padding(4.dp)
@@ -53,14 +53,21 @@ fun RoundedChip(text: String) {
                 .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-           Normal(text = text)
+            Normal(text = genresItem.name ?: "")
         }
     }
 }
 
 @Preview
 @Composable
-fun RoundedChipsListViewPreview() {
-    val sampleChips = listOf("Android", "Compose", "Jetpack", "Kotlin", "Feather")
-    RoundedChipsListView(chips = sampleChips)
+fun GeneresListViewPreview() {
+    val sampleChips = listOf(
+        GenresItem(name = "Action", id = 1),
+        GenresItem(name = "Science Fictions", id = 2),
+        GenresItem(name = "Action", id = 3),
+        GenresItem(name = "Action", id = 4),
+        GenresItem(name = "Action", id = 5),
+        GenresItem(name = "Action", id = 6),
+    )
+    GeneresListView(genereList = sampleChips)
 }

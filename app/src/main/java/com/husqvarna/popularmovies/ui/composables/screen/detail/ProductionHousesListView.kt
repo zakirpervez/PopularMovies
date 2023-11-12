@@ -1,14 +1,10 @@
 package com.husqvarna.popularmovies.ui.composables.screen.detail
 
-import android.graphics.drawable.shapes.RectShape
-import android.graphics.drawable.shapes.Shape
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,12 +21,11 @@ import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.api.models.response.ProductionCompaniesItem
 import com.husqvarna.popularmovies.ui.composables.screen.common.MoviePosterImage
 import com.husqvarna.popularmovies.ui.composables.screen.common.Normal
-import com.husqvarna.popularmovies.ui.composables.screen.common.VerticalSpacer
-import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
+import java.util.*
 
 @Composable
-fun BoxTextListView(companies: List<ProductionCompaniesItem>) {
+fun ProductionHousesListView(companies: List<ProductionCompaniesItem?>) {
     LazyRow(
         modifier = Modifier
             .height(64.dp)
@@ -41,13 +36,13 @@ fun BoxTextListView(companies: List<ProductionCompaniesItem>) {
             count = companies.size,
             key = { index -> index }
         ) { item ->
-            BoxTextListItem(company = companies[item])
+            ProductionHousesItemView(company = companies[item]!!)
         }
     }
 }
 
 @Composable
-fun BoxTextListItem(company: ProductionCompaniesItem) {
+fun ProductionHousesItemView(company: ProductionCompaniesItem) {
     Card(
         modifier = Modifier
             .width(128.dp),
@@ -63,7 +58,7 @@ fun BoxTextListItem(company: ProductionCompaniesItem) {
                 url = "${BuildConfig.IMAGES_URL}/${company.logoPath}",
                 modifier = Modifier
                     .padding(start = 4.dp, top = 8.dp, bottom = 8.dp, end = 4.dp)
-                    .aspectRatio(10f/11f)
+                    .aspectRatio(10f / 11f)
             )
             Column(
                 modifier = Modifier
@@ -73,8 +68,11 @@ fun BoxTextListItem(company: ProductionCompaniesItem) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.Start
             ) {
-                Normal(text = company.name ?: "")
-                Normal(text = company.originCountry ?: "")
+                Normal(text = company.name ?: "", maxLine = 1)
+                Normal(
+                    text = Locale(company.originCountry ?: "en").displayCountry,
+                    maxLine = 1
+                )
             }
         }
     }
@@ -82,12 +80,12 @@ fun BoxTextListItem(company: ProductionCompaniesItem) {
 
 @Preview
 @Composable
-fun BoxTextListViewPreview() {
+fun ProductionHousesListViewPreview() {
     val companies = listOf(
         ProductionCompaniesItem(id = 1, logoPath = "", name = "Marvel", originCountry = "usa"),
         ProductionCompaniesItem(id = 2, logoPath = "", name = "DC", originCountry = "usa"),
         ProductionCompaniesItem(id = 3, logoPath = "", name = "Marvel", originCountry = "usa"),
         ProductionCompaniesItem(id = 4, logoPath = "", name = "Marvel", originCountry = "usa"),
     )
-    BoxTextListView(companies = companies)
+    ProductionHousesListView(companies = companies)
 }

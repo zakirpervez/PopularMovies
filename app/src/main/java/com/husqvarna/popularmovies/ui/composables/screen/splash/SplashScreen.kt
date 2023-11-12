@@ -1,4 +1,4 @@
-package com.husqvarna.popularmovies.ui.composables.screen
+package com.husqvarna.popularmovies.ui.composables.screen.splash
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

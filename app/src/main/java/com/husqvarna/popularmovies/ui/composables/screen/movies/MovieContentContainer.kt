@@ -8,16 +8,11 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.api.models.response.Movie
@@ -27,6 +22,7 @@ import com.husqvarna.popularmovies.ui.composables.screen.common.IconTextGroup
 import com.husqvarna.popularmovies.ui.composables.screen.common.MoviePosterImage
 import com.husqvarna.popularmovies.ui.composables.screen.common.VerticalSpacer
 import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
+import java.util.*
 
 @Composable
 fun MovieContentContainer(movie: Movie) {
@@ -58,7 +54,7 @@ fun MovieContentContainer(movie: Movie) {
             )
             HorizontalSpacer(height = 8.dp)
             IconTextGroup(
-                title = movie.originalLanguage ?: "-",
+                title = Locale(movie.originalLanguage ?: "en").displayLanguage,
                 drawableId = R.drawable.baseline_language_24
             )
         }

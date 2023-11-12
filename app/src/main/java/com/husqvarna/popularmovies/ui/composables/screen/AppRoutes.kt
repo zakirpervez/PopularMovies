@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.husqvarna.popularmovies.ui.composables.screen.detail.MovieDetailsScreen
 import com.husqvarna.popularmovies.ui.composables.screen.movies.MoviesScreen
+import com.husqvarna.popularmovies.ui.composables.screen.splash.SplashScreen
 import com.husqvarna.popularmovies.ui.viewmodel.MovieDetailsViewModel
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
 
@@ -34,10 +35,10 @@ fun AppRoutes() {
                 type = NavType.IntType
             }
         )) {
-//            val movieDetailsViewModel = hiltViewModel<MovieDetailsViewModel>()
+            val movieDetailsViewModel = hiltViewModel<MovieDetailsViewModel>()
             MovieDetailsScreen(
-                movieId = it.arguments?.getInt("movie_id") ?: 0/*,
-                movieDetailsViewModel = movieDetailsViewModel*/
+                movieId = it.arguments?.getInt("movie_id") ?: 0,
+                movieDetailsViewModel = movieDetailsViewModel
             )
         }
     })

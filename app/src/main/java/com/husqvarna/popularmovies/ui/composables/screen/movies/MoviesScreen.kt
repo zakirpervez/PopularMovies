@@ -8,13 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
-import com.husqvarna.popularmovies.api.Repository
-import com.husqvarna.popularmovies.api.models.response.Movie
 import com.husqvarna.popularmovies.ui.composables.screen.common.ProgressIndicator
 import com.husqvarna.popularmovies.ui.composables.theme.Purple200
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
