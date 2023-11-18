@@ -15,8 +15,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.ui.composables.common.ErrorData
-import com.husqvarna.popularmovies.ui.composables.connectivity.ConnectivityObserver
-import com.husqvarna.popularmovies.ui.composables.connectivity.NetworkConnectivityObserver
+import com.husqvarna.popularmovies.ui.util.connectivity.ConnectivityObserver
+import com.husqvarna.popularmovies.ui.util.connectivity.NetworkConnectivityObserver
 import com.husqvarna.popularmovies.ui.composables.screen.AppRoutes
 import com.husqvarna.popularmovies.ui.composables.theme.PopularMoviesTheme
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow

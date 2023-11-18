@@ -40,7 +40,7 @@ fun MovieContentContainer(movie: Movie) {
         MoviePosterImage(
             url = posterUrl, modifier = Modifier
                 .background(color = DullBlack)
-                .aspectRatio(10f / 18f, true)
+                .aspectRatio(10f / 16f, true)
                 .scale(1f)
         )
 

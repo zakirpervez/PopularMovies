@@ -8,13 +8,11 @@
 <ol>
 <li>Android SDK</li>
 <li>Kotlin</li>
-<li>XML</li>
-<li>Constraint/Motion Layout</li>
 <li>Compose</li>
 <li>Jetpack Navigation Component</li>
 <li>Jetpack Paging</li>
 <li>Android Architecture Components</li>
-<li>Glide</li>
+<li>Koil</li>
 <li>Retrofit</li>
 <li>Hilt Dagger</li>
 <li>Coroutines</li>
@@ -27,14 +25,15 @@
 <p>A Git branching strategy is a set of rules and guidelines for managing and organizing branches in a Git repository. 
 It helps teams collaborate, maintain code quality, and streamline the development process. 
 There are several branching strategies like Truncate based development, Git Flow etc.</p>
-<p>In this project I am going to use the truncate based development strategy as I am a single in this project due to which it make more sense to use it.</p>
+<p>For this project, I plan to use a truncate-based development strategy. Given that I am the sole contributor in this project, using this approach aligns well with the project's needs.</p>
 <ol>
 <li>`main` - Main branch, always stable and ready to deploy. </li>
 <li>All the feature branches should be created from master branch. </li>
 <li>All the feature branches should be merged into master branch.</li>
 </ol>
 
-*Note: As I am single developer, I am not creating any feature branches. I am directly pushing the code to master branch.*
+*Note: As I am single developer, I am not creating any feature branches. I am directly pushing the
+code to master branch.*
 
 <h3>Commit guidelines</h3>
 <p>Commit should always be make in following format</p>
@@ -64,7 +63,8 @@ There are several branching strategies like Truncate based development, Git Flow
 
 <p>ticket/issue_number: Represent JIRA/Github/Gitlab ticket/issue number.</p>
 
-* Note: 
+* Note:
+
 <ol>
 <li>There is no git pre-hooks added.</li>
 <li>As I don't have any JIRA/Github/Gitlab ticket/issue number, I am assuming a ticket no TN:10000 and adding it in my commits.</li>

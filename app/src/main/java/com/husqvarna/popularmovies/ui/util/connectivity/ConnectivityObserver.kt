@@ -1,4 +1,4 @@
-package com.husqvarna.popularmovies.ui.composables.connectivity
+package com.husqvarna.popularmovies.ui.util.connectivity
 
 import kotlinx.coroutines.flow.Flow
 
