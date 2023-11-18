@@ -8,6 +8,7 @@ import com.husqvarna.popularmovies.api.models.ApiResult
 import com.husqvarna.popularmovies.api.models.response.MovieDetailsResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,7 +34,9 @@ class MovieDetailsViewModel @Inject constructor(private val repository: Reposito
      * @see [Repository.fetchMovieDetails]
      */
     fun fetchMovieDetails(movieId: Int) = viewModelScope.launch(Dispatchers.IO) {
-        when (val response = repository.fetchMovieDetails(movieId)) {
+        loaderMutableLiveData.postValue(true)
+        val response = async { repository.fetchMovieDetails(movieId) }.await()
+        when (response) {
             is ApiResult.Success<MovieDetailsResponse> -> {
                 moviesDetailsMutableLiveData.postValue(response.data)
             }
@@ -42,5 +45,6 @@ class MovieDetailsViewModel @Inject constructor(private val repository: Reposito
                 errorMutableLiveData.postValue(response.errorMessage)
             }
         }
+        loaderMutableLiveData.postValue(false)
     }
 }
