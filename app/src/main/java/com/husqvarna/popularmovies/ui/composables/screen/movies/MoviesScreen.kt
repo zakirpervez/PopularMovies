@@ -12,8 +12,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
+import com.husqvarna.popularmovies.ui.composables.common.ErrorData
 import com.husqvarna.popularmovies.ui.composables.screen.common.ProgressIndicator
 import com.husqvarna.popularmovies.ui.composables.theme.Purple200
+import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
 
 @Composable
@@ -25,17 +27,32 @@ fun MoviesScreen(moviesViewModel: MoviesViewModel, onNavigate: (id: Int) -> Unit
             .background(color = Purple200),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        if (movies.loadState.refresh == LoadState.Loading) {
-            ProgressIndicator()
-        }
+        when (movies.loadState.refresh) {
+            is LoadState.Loading -> {
+                ProgressIndicator()
+            }
 
-        LazyColumn(modifier = Modifier.background(color = Purple200)) {
-            items(
-                count = movies.itemCount,
-                key = movies.itemKey { it.id ?: 0 }
-            ) { index ->
-                val movie = movies[index]!!
-                MovieItemContainer(movie = movie, onNavigate = onNavigate)
+            is LoadState.Error -> {
+                val error = (movies.loadState.refresh as LoadState.Error).error.message
+                    ?: "Something went wrong"
+                ErrorData(
+                    error = error,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = TurmericYellow)
+                )
+            }
+
+            is LoadState.NotLoading -> {
+                LazyColumn(modifier = Modifier.background(color = Purple200)) {
+                    items(
+                        count = movies.itemCount,
+                        key = movies.itemKey { it.id ?: 0 }
+                    ) { index ->
+                        val movie = movies[index]!!
+                        MovieItemContainer(movie = movie, onNavigate = onNavigate)
+                    }
+                }
             }
         }
     }
@@ -50,5 +67,3 @@ fun MoviesScreenPreview() {
         onNavigate = {}
     )
 }
-
-

@@ -21,7 +21,9 @@ class MoviesDataSource @Inject constructor(private val repository: Repository, p
         apiLoadingListener?.loadingState(true)
         return try {
             val nextPageNumber = params.key ?: 1
-            val apiResponse = CoroutineScope(Dispatchers.IO+Job()).async { repository.fetchPopularMovies(nextPageNumber) }
+            val apiResponse = CoroutineScope(Dispatchers.IO+Job()).async {
+                 repository.fetchPopularMovies(nextPageNumber)
+            }
             val response = apiResponse.await()
             apiLoadingListener?.loadingState(false)
             when(response){
