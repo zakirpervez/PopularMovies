@@ -13,7 +13,7 @@ import javax.inject.Inject
 class MoviesViewModel @Inject constructor(private val repository: Repository) : BaseViewModel() {
     val movies =
         Pager(config = PagingConfig(pageSize = 20, prefetchDistance = 2), pagingSourceFactory = {
-            MoviesDataSource(repository,object : MoviesDataSource.ApiLoadingStateListener {
+            MoviesDataSource(repository, object : MoviesDataSource.ApiLoadingStateListener {
                 override fun loadingState(isLoading: Boolean) {
                     loaderMutableLiveData.postValue(isLoading)
                 }

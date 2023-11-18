@@ -18,6 +18,7 @@ import com.husqvarna.popularmovies.ui.composables.screen.AppRoutes
 import com.husqvarna.popularmovies.ui.composables.theme.PopularMoviesTheme
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 
 /**
@@ -39,7 +40,7 @@ class MainActivity : ComponentActivity() {
                         AppRoutes()
                     }
 
-                    ConnectivityObserver.Status.UNAVAILABLE, ConnectivityObserver.Status.LOST -> {
+                    ConnectivityObserver.Status.LOST -> {
                         ErrorData(
                             title = "No Data Connectivity",
                             content = "Please connect to internet and try again",
@@ -49,6 +50,8 @@ class MainActivity : ComponentActivity() {
                                 .background(color = TurmericYellow)
                         )
                     }
+
+                    else -> Timber.d("Connectivity state: $connectivityState")
                 }
             }
         }
