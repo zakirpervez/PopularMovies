@@ -1,12 +1,12 @@
 package com.husqvarna.popularmovies.ui.composables.common
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -24,7 +24,12 @@ import com.husqvarna.popularmovies.ui.composables.screen.common.Normal
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
 
 @Composable
-fun ErrorData(error: String, modifier: Modifier) {
+fun ErrorData(
+    title: String,
+    content: String,
+    @DrawableRes drawableId: Int = R.drawable.baseline_playlist_remove_24,
+    modifier: Modifier
+) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Center,
@@ -35,14 +40,14 @@ fun ErrorData(error: String, modifier: Modifier) {
                 .background(color = Color.White)
                 .width(200.dp)
                 .aspectRatio(10f / 6f),
-            painter = painterResource(id = R.drawable.baseline_playlist_remove_24),
+            painter = painterResource(id = drawableId),
             contentDescription = "No Data Found"
         )
         HorizontalSpacer(height = 16.dp)
-        Heading(text = "No Data Found", fontSize = 24.sp)
+        Heading(text = title, fontSize = 24.sp)
         HorizontalSpacer(height = 16.dp)
         Normal(
-            text = error,
+            text = content,
             fontSize = 16.sp,
             textAlign = TextAlign.Center
         )
@@ -53,9 +58,10 @@ fun ErrorData(error: String, modifier: Modifier) {
 @Composable
 fun NoDataPreview() {
     ErrorData(
-        "No data found please check back later and try some other movie", modifier = Modifier
+        title = "Title",
+        content = "Content",
+        modifier = Modifier
             .fillMaxSize()
             .background(color = TurmericYellow)
-            .padding(16.dp)
     )
 }

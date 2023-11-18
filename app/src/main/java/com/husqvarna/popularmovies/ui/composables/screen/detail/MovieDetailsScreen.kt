@@ -53,7 +53,8 @@ fun MovieDetailsScreen(movieId: Int, movieDetailsViewModel: MovieDetailsViewMode
 
     errorState.value?.let {
         ErrorData(
-            error = it,
+            title = "No Data Found",
+            content = it,
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = TurmericYellow)

@@ -36,7 +36,8 @@ fun MoviesScreen(moviesViewModel: MoviesViewModel, onNavigate: (id: Int) -> Unit
                 val error = (movies.loadState.refresh as LoadState.Error).error.message
                     ?: "Something went wrong"
                 ErrorData(
-                    error = error,
+                    title = "No Data Found",
+                    content = error,
                     modifier = Modifier
                         .fillMaxSize()
                         .background(color = TurmericYellow)
