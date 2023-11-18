@@ -8,7 +8,7 @@ import com.husqvarna.popularmovies.MockDataHelper
 import com.husqvarna.popularmovies.api.Repository
 import com.husqvarna.popularmovies.api.models.ApiResult
 import com.husqvarna.popularmovies.api.models.response.Movie
-import com.husqvarna.popularmovies.ui.fragments.home.paging.MoviesDataSource
+import com.husqvarna.popularmovies.ui.composables.screen.movies.pagging.MoviesDataSource
 import io.mockk.coEvery
 import io.mockk.mockk
 import io.mockk.unmockkAll

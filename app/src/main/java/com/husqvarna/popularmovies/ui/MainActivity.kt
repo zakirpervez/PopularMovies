@@ -5,10 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.ui.composables.common.ErrorData
@@ -22,11 +25,10 @@ import timber.log.Timber
 
 
 /**
- * Main activity for the app. Represent the single activity architecture.
+ * Main activity for the app. Represent the SPA architecture.
  */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
     private lateinit var connectivityObserver: ConnectivityObserver
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +44,8 @@ class MainActivity : ComponentActivity() {
 
                     ConnectivityObserver.Status.LOST -> {
                         ErrorData(
-                            title = "No Data Connectivity",
-                            content = "Please connect to internet and try again",
+                            title = stringResource(id = R.string.no_internet_connectivity_title),
+                            content = stringResource(id = R.string.no_internet_connectivity_content),
                             drawableId = R.drawable.baseline_signal_wifi_connected_no_internet_4_24,
                             modifier = Modifier
                                 .fillMaxSize()

@@ -1,4 +1,4 @@
-package com.husqvarna.popularmovies.ui.composables.screen.common
+package com.husqvarna.popularmovies.ui.composables.common
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

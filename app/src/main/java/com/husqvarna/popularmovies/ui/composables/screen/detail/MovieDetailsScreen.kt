@@ -14,6 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,10 +27,10 @@ import com.husqvarna.popularmovies.api.models.response.ProductionCountriesItem
 import com.husqvarna.popularmovies.api.models.response.SpokenLanguagesItem
 import com.husqvarna.popularmovies.ui.composables.common.ErrorData
 import com.husqvarna.popularmovies.ui.composables.screen.common.Heading
-import com.husqvarna.popularmovies.ui.composables.screen.common.IconTextGroup
-import com.husqvarna.popularmovies.ui.composables.screen.common.MoviePosterImage
-import com.husqvarna.popularmovies.ui.composables.screen.common.Normal
-import com.husqvarna.popularmovies.ui.composables.screen.common.ProgressIndicator
+import com.husqvarna.popularmovies.ui.composables.common.IconTextGroup
+import com.husqvarna.popularmovies.ui.composables.common.MoviePosterImage
+import com.husqvarna.popularmovies.ui.composables.common.Normal
+import com.husqvarna.popularmovies.ui.composables.common.ProgressIndicator
 import com.husqvarna.popularmovies.ui.composables.theme.Purple200
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
 import com.husqvarna.popularmovies.ui.viewmodel.MovieDetailsViewModel
@@ -53,7 +54,7 @@ fun MovieDetailsScreen(movieId: Int, movieDetailsViewModel: MovieDetailsViewMode
 
     errorState.value?.let {
         ErrorData(
-            title = "No Data Found",
+            title = stringResource(id = R.string.no_data_found),
             content = it,
             modifier = Modifier
                 .fillMaxSize()
@@ -88,19 +89,21 @@ fun MovieDetails(movieDetails: MovieDetailsResponse) {
                 .aspectRatio(10f / 5f)
 
         )
-        Heading(text = movieDetails.title ?: "")
+        Heading(text = movieDetails.title ?: stringResource(id = R.string.dash))
         Normal(
-            text = movieDetails.tagline ?: "",
+            text = movieDetails.tagline ?: stringResource(id = R.string.dash),
             fontStyle = FontStyle.Italic
         )
         IconTextGroup(
-            title = movieDetails.releaseDate ?: "",
+            title = movieDetails.releaseDate ?: stringResource(id = R.string.dash),
             drawableId = R.drawable.baseline_calendar_month_24
         )
-        IconTextGroup(
-            title = Locale(movieDetails.originalLanguage ?: "en").displayLanguage,
-            drawableId = R.drawable.baseline_language_24
-        )
+        movieDetails.originalLanguage?.let {
+            IconTextGroup(
+                title = Locale(it).displayLanguage,
+                drawableId = R.drawable.baseline_language_24
+            )
+        }
         IconTextGroup(
             title = movieDetails.budget.toString(),
             drawableId = R.drawable.baseline_monetization_on_24

@@ -9,11 +9,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,11 +17,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.husqvarna.popularmovies.BuildConfig
 import com.husqvarna.popularmovies.api.models.response.ProductionCompaniesItem
-import com.husqvarna.popularmovies.ui.composables.screen.common.MoviePosterImage
-import com.husqvarna.popularmovies.ui.composables.screen.common.Normal
-import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
+import com.husqvarna.popularmovies.ui.composables.common.MoviePosterImage
+import com.husqvarna.popularmovies.ui.composables.common.Normal
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
-import java.util.*
+import java.util.Locale
 
 @Composable
 fun ProductionHousesListView(companies: List<ProductionCompaniesItem?>) {
@@ -58,7 +53,6 @@ fun ProductionHousesItemView(company: ProductionCompaniesItem) {
                 .padding(start = 4.dp, top = 8.dp, bottom = 8.dp, end = 4.dp)
                 .aspectRatio(10f / 11f)
         )
-        val country = Locale("", company.originCountry ?: "IN").displayCountry
         Column(
             modifier = Modifier
                 .fillMaxHeight()
@@ -68,7 +62,9 @@ fun ProductionHousesItemView(company: ProductionCompaniesItem) {
             horizontalAlignment = Alignment.Start
         ) {
             Normal(text = company.name ?: "")
-            Normal(text = country)
+            company.originCountry?.let {
+                Normal(text = Locale(it).displayCountry)
+            }
         }
     }
 }

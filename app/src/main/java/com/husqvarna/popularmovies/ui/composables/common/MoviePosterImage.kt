@@ -1,4 +1,4 @@
-package com.husqvarna.popularmovies.ui.composables.screen.common
+package com.husqvarna.popularmovies.ui.composables.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.aspectRatio

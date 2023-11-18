@@ -7,13 +7,15 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
+import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.ui.composables.common.ErrorData
-import com.husqvarna.popularmovies.ui.composables.screen.common.ProgressIndicator
+import com.husqvarna.popularmovies.ui.composables.common.ProgressIndicator
 import com.husqvarna.popularmovies.ui.composables.theme.Purple200
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
@@ -34,9 +36,9 @@ fun MoviesScreen(moviesViewModel: MoviesViewModel, onNavigate: (id: Int) -> Unit
 
             is LoadState.Error -> {
                 val error = (movies.loadState.refresh as LoadState.Error).error.message
-                    ?: "Something went wrong"
+                    ?: stringResource(id = R.string.universal_error_message)
                 ErrorData(
-                    title = "No Data Found",
+                    title = stringResource(id = R.string.no_data_found),
                     content = error,
                     modifier = Modifier
                         .fillMaxSize()

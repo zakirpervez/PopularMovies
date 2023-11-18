@@ -1,4 +1,4 @@
-package com.husqvarna.popularmovies.ui.fragments.home.paging
+package com.husqvarna.popularmovies.ui.composables.screen.movies.pagging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

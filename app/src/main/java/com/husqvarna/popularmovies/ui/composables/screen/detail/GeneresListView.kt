@@ -13,10 +13,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.api.models.response.GenresItem
-import com.husqvarna.popularmovies.ui.composables.screen.common.Normal
+import com.husqvarna.popularmovies.ui.composables.common.Normal
 import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
 
 @Composable
@@ -53,7 +55,7 @@ fun GenereItemView(genresItem: GenresItem) {
                 .fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Normal(text = genresItem.name ?: "")
+            Normal(text = genresItem.name ?: stringResource(id = R.string.dash))
         }
     }
 }

@@ -5,7 +5,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.husqvarna.popularmovies.api.Repository
-import com.husqvarna.popularmovies.ui.fragments.home.paging.MoviesDataSource
+import com.husqvarna.popularmovies.ui.composables.screen.movies.pagging.MoviesDataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
