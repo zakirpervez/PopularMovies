@@ -19,6 +19,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.husqvarna.popularmovies.R
 
+/**
+ * Icon text group. Used to show icon and text in a row.
+ * @param title [String]
+ * @param drawableId [Int]
+ */
 @Composable
 fun IconTextGroup(title: String, drawableId: Int) {
     Row(
@@ -36,10 +41,7 @@ fun IconTextGroup(title: String, drawableId: Int) {
                 .background(Color.Transparent)
         )
         Text(
-            text = title,
-            color = Color.White,
-            fontWeight = FontWeight.Bold,
-            fontSize = 12.sp
+            text = title, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 12.sp
         )
     }
 }

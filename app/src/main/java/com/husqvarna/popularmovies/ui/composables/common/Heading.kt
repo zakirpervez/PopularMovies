@@ -9,6 +9,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 
+/**
+ * Heading text view with bold text.
+ * @param text [String]
+ * @param fontSize [TextUnit]
+ * @see Text
+ */
 @Composable
 fun Heading(text: String, fontSize: TextUnit = 16.sp) {
     Text(

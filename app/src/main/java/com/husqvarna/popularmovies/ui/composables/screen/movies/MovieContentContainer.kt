@@ -25,6 +25,10 @@ import com.husqvarna.popularmovies.ui.composables.common.VerticalSpacer
 import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
 import java.util.*
 
+/**
+ * Movie content container. Represent the single movie item.
+ * @param movie [Movie]
+ */
 @Composable
 fun MovieContentContainer(movie: Movie) {
     Row(

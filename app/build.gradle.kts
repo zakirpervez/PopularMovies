@@ -33,7 +33,11 @@ android {
             )
 
             buildConfigField("String", "API_KEY", project.properties["API_KEY"].toString())
-            buildConfigField("String", "ACCESS_TOKEN", project.properties["ACCESS_TOKEN"].toString())
+            buildConfigField(
+                "String",
+                "ACCESS_TOKEN",
+                project.properties["ACCESS_TOKEN"].toString()
+            )
             buildConfigField("String", "BASE_URL", project.properties["BASE_URL"].toString())
             buildConfigField("String", "IMAGES_URL", project.properties["IMAGES_URL"].toString())
         }
@@ -46,7 +50,11 @@ android {
             )
 
             buildConfigField("String", "API_KEY", project.properties["API_KEY"].toString())
-            buildConfigField("String", "ACCESS_TOKEN", project.properties["ACCESS_TOKEN"].toString())
+            buildConfigField(
+                "String",
+                "ACCESS_TOKEN",
+                project.properties["ACCESS_TOKEN"].toString()
+            )
             buildConfigField("String", "BASE_URL", project.properties["BASE_URL"].toString())
             buildConfigField("String", "IMAGES_URL", project.properties["IMAGES_URL"].toString())
         }
@@ -122,6 +130,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4-desktop:1.6.0-beta01")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     androidTestImplementation("androidx.navigation:navigation-testing:2.7.5")
     androidTestImplementation(composeBom)

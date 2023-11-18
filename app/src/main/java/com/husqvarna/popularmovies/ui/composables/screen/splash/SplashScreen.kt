@@ -19,6 +19,11 @@ import com.husqvarna.popularmovies.ui.composables.theme.Purple200
 import com.husqvarna.popularmovies.ui.util.SPLASH_SCREEN_DELAY
 import kotlinx.coroutines.delay
 
+/**
+ * Splash screen.
+ * This screen is shown when the app is launched.
+ * It will be shown for a [SPLASH_SCREEN_DELAY] seconds.
+ */
 @Composable
 fun SplashScreen(onNavigate: () -> Unit) {
     LaunchedEffect(key1 = Unit) {

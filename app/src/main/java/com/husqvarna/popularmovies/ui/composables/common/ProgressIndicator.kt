@@ -15,6 +15,9 @@ import androidx.compose.ui.unit.dp
 import com.husqvarna.popularmovies.ui.composables.theme.Purple200
 import com.husqvarna.popularmovies.ui.composables.theme.Purple40
 
+/**
+ * Progress indicator. Progress indicator with purple background and white progress indicator.
+ */
 @Composable
 fun ProgressIndicator() {
     Box(

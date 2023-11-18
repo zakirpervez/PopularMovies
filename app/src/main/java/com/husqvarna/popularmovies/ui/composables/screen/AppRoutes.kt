@@ -13,12 +13,15 @@ import com.husqvarna.popularmovies.ui.composables.screen.splash.SplashScreen
 import com.husqvarna.popularmovies.ui.viewmodel.MovieDetailsViewModel
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
 
+/**
+ * Contains all navigation routes.
+ * @return [Unit]
+ */
 @Composable
 fun AppRoutes() {
     val navController = rememberNavController()
-
     NavHost(navController = navController, startDestination = "splash_screen", builder = {
-        composable(route = "splash_screen"){
+        composable(route = "splash_screen") {
             SplashScreen {
                 navController.popBackStack(route = "splash_screen", inclusive = true)
                 navController.navigate("movies_screen")

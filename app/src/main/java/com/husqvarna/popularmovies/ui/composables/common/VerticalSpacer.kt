@@ -9,6 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 
+/**
+ * Vertical spacer. Used to add space between two views vertically.
+ * @param width [Dp]
+ */
 @Composable
 fun VerticalSpacer(width: Dp) {
     Spacer(

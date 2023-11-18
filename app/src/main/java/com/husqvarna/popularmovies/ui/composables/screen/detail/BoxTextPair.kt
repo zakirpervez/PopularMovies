@@ -14,6 +14,12 @@ import com.husqvarna.popularmovies.ui.composables.common.BoxText
 import com.husqvarna.popularmovies.ui.composables.common.VerticalSpacer
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
 
+/**
+ * Box text pair. Shows two text in a row with equal width and height along with turmeric yellow
+ * background and white text.
+ * @param text1 [String]
+ * @param text2 [String]
+ */
 @Composable
 fun BoxTextPair(text1: String, text2: String) {
     Row(

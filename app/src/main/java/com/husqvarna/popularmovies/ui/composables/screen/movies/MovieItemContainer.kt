@@ -12,6 +12,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.husqvarna.popularmovies.api.models.response.Movie
 
+/**
+ * Movie item container. Contains the [RoundedRectContainer] and the [MovieContentContainer].
+ * @param movie [Movie]
+ */
 @Composable
 fun MovieItemContainer(movie: Movie, onNavigate: (id: Int) -> Unit) {
     Box(

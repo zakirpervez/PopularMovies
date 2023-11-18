@@ -22,6 +22,13 @@ import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.ui.composables.screen.common.Heading
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
 
+/**
+ * Error data view. Used to show error data.
+ * @param title [String]
+ * @param content [String]
+ * @param drawableId [Int]
+ * @param modifier [Modifier]
+ */
 @Composable
 fun ErrorData(
     title: String,

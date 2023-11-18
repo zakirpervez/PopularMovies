@@ -19,7 +19,15 @@ import com.husqvarna.popularmovies.ui.composables.common.ProgressIndicator
 import com.husqvarna.popularmovies.ui.composables.theme.Purple200
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
 import com.husqvarna.popularmovies.ui.viewmodel.MoviesViewModel
+import com.husqvarna.popularmovies.ui.composables.screen.detail.MovieDetailsScreen
 
+/**
+ * Movies screen.
+ * Shows a list of movies. The list is paginated. The pagination is handled by the [MoviesViewModel].
+ * On movie click, the user will be navigated to the [MovieDetailsScreen].
+ * @param moviesViewModel [MoviesViewModel]
+ * @param onNavigate [Unit]
+ */
 @Composable
 fun MoviesScreen(moviesViewModel: MoviesViewModel, onNavigate: (id: Int) -> Unit) {
     val movies = moviesViewModel.movies.collectAsLazyPagingItems()

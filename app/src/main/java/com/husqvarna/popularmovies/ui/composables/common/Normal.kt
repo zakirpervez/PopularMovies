@@ -10,6 +10,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 
+/**
+ * Regular text view with normal text.
+ * @param text [String]
+ * @param fontSize [TextUnit]
+ * @param fontWeight [FontWeight]
+ * @param fontStyle [FontStyle]
+ * @param textAlign [TextAlign]
+ * @see Text
+ */
 @Composable
 fun Normal(
     text: String,

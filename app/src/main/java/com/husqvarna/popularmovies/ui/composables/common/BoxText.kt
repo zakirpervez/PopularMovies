@@ -6,6 +6,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.husqvarna.popularmovies.ui.composables.screen.common.Heading
 
+/**
+ * Box text. Used to show text in a box.
+ * @param text [String]
+ * @param modifier [Modifier]
+ * @see Box
+ * @see Heading
+ */
 @Composable
 fun BoxText(text: String, modifier: Modifier) {
     Box(

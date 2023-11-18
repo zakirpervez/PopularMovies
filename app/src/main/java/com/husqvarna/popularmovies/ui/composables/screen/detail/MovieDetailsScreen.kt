@@ -36,6 +36,12 @@ import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
 import com.husqvarna.popularmovies.ui.viewmodel.MovieDetailsViewModel
 import java.util.*
 
+/**
+ * Movie details screen.
+ * Shows the details of the movie.
+ * @param movieId [Int]
+ * @param movieDetailsViewModel [MovieDetailsViewModel]
+ */
 @Composable
 fun MovieDetailsScreen(movieId: Int, movieDetailsViewModel: MovieDetailsViewModel) {
     val movieDetailsState = movieDetailsViewModel.moviesDetailsLiveData.observeAsState(null)
@@ -71,6 +77,10 @@ fun MovieDetailsScreen(movieId: Int, movieDetailsViewModel: MovieDetailsViewMode
     }
 }
 
+/**
+ * Movie details.
+ * @param movieDetails [MovieDetailsResponse]
+ */
 @Composable
 fun MovieDetails(movieDetails: MovieDetailsResponse) {
     Column(
@@ -83,8 +93,7 @@ fun MovieDetails(movieDetails: MovieDetailsResponse) {
     ) {
         val imageUrl = "${BuildConfig.IMAGES_URL}/${movieDetails.backdropPath}"
         MoviePosterImage(
-            url = imageUrl,
-            modifier = Modifier
+            url = imageUrl, modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(10f / 5f)
 
@@ -100,8 +109,7 @@ fun MovieDetails(movieDetails: MovieDetailsResponse) {
         )
         movieDetails.originalLanguage?.let {
             IconTextGroup(
-                title = Locale(it).displayLanguage,
-                drawableId = R.drawable.baseline_language_24
+                title = Locale(it).displayLanguage, drawableId = R.drawable.baseline_language_24
             )
         }
         IconTextGroup(
@@ -131,8 +139,7 @@ fun MovieDetailsPreview() {
         backdropPath = "/dummy_backdrop_path.jpg",
         revenue = 1000000000,
         genres = listOf(
-            GenresItem(id = 1, name = "Action"),
-            GenresItem(id = 2, name = "Drama")
+            GenresItem(id = 1, name = "Action"), GenresItem(id = 2, name = "Drama")
             // Add more genres as needed
         ),
         popularity = 123.45,

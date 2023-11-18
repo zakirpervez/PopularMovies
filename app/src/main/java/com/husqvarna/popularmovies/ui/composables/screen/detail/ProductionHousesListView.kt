@@ -22,6 +22,10 @@ import com.husqvarna.popularmovies.ui.composables.common.Normal
 import com.husqvarna.popularmovies.ui.composables.theme.TurmericYellow
 import java.util.Locale
 
+/**
+ * Production houses list view.
+ * @param companies [List] of [ProductionCompaniesItem]
+ */
 @Composable
 fun ProductionHousesListView(companies: List<ProductionCompaniesItem?>) {
     LazyRow(
@@ -39,6 +43,10 @@ fun ProductionHousesListView(companies: List<ProductionCompaniesItem?>) {
     }
 }
 
+/**
+ * Production houses item view.
+ * @param company [ProductionCompaniesItem]
+ */
 @Composable
 fun ProductionHousesItemView(company: ProductionCompaniesItem) {
     Row(

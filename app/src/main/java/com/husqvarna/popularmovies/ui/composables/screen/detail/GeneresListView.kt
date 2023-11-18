@@ -21,6 +21,10 @@ import com.husqvarna.popularmovies.api.models.response.GenresItem
 import com.husqvarna.popularmovies.ui.composables.common.Normal
 import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
 
+/**
+ * Genres list view.
+ * @param genereList [List] of [GenresItem]
+ */
 @Composable
 fun GeneresListView(genereList: List<GenresItem?>) {
     LazyRow(
@@ -35,6 +39,10 @@ fun GeneresListView(genereList: List<GenresItem?>) {
     }
 }
 
+/**
+ * Genres item view.
+ * @param genresItem [GenresItem]
+ */
 @Composable
 fun GenereItemView(genresItem: GenresItem) {
     Card(

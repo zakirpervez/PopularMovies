@@ -11,6 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
 
+/**
+ * Rounded rectangle container with dull black background.
+ */
 @Composable
 fun RoundedRectContainer() {
     Box(

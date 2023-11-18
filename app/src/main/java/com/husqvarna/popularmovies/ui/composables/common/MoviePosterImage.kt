@@ -12,6 +12,11 @@ import coil.compose.AsyncImage
 import com.husqvarna.popularmovies.R
 import com.husqvarna.popularmovies.ui.composables.theme.DullBlack
 
+/**
+ * Movie poster image.
+ * @param url [String]
+ * @param modifier [Modifier]
+ */
 @Composable
 fun MoviePosterImage(url: String, modifier: Modifier) {
     AsyncImage(
